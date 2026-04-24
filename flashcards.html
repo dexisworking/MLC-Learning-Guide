@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MLC Flashcards</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0f;--surface:#13131a;--surface2:#1c1c28;--border:#2a2a3a;
+  --text:#f0f0ff;--muted:#7070a0;--c1:#6366f1;--c2:#8b5cf6;--c3:#06b6d4;--c4:#f59e0b;--c5:#10b981;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden}
+#root{min-height:100vh;display:flex;flex-direction:column}
+
+/* Header */
+.header{padding:1.5rem 2rem;display:flex;align-items:center;gap:1rem;border-bottom:1px solid var(--border);background:var(--surface)}
+.logo{font-size:1.5rem;font-weight:800;background:linear-gradient(135deg,#6366f1,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{color:var(--muted);font-size:.85rem}
+
+/* Chapter tabs */
+.tabs{display:flex;gap:.5rem;padding:1.25rem 2rem;background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
+.tab{padding:.5rem 1.1rem;border-radius:999px;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-size:.82rem;font-weight:500;cursor:pointer;white-space:nowrap;transition:all .2s;font-family:inherit}
+.tab:hover{border-color:currentColor;color:var(--text)}
+.tab.active{color:#fff;border-color:transparent}
+
+/* Main */
+.main{flex:1;display:flex;flex-direction:column;align-items:center;padding:2rem 1rem;gap:1.5rem}
+
+/* Stats row */
+.stats{display:flex;gap:1rem;align-items:center;font-size:.85rem;color:var(--muted)}
+.badge{background:var(--surface2);border:1px solid var(--border);padding:.25rem .75rem;border-radius:999px;font-size:.78rem}
+
+/* Progress */
+.progress-wrap{width:100%;max-width:560px}
+.progress-label{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted);margin-bottom:.4rem}
+.progress-track{height:4px;background:var(--surface2);border-radius:99px;overflow:hidden}
+.progress-fill{height:100%;border-radius:99px;transition:width .4s ease}
+
+/* Card */
+.scene{width:100%;max-width:560px;height:300px;perspective:1200px;cursor:pointer}
+.card{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,0,.2,1)}
+.card.flipped{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:1.25rem;border:1.5px solid var(--border);padding:2rem;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.face.front{background:var(--surface)}
+.face.back{background:var(--surface2);transform:rotateY(180deg)}
+.face-label{font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem;opacity:.5}
+.face-text{font-size:1.15rem;font-weight:500;line-height:1.6;max-width:90%}
+.face.back .face-text{font-size:1.05rem;font-weight:400;color:#d0d0f0}
+.tap-hint{margin-top:1.25rem;font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:.4rem}
+.tap-dot{width:6px;height:6px;border-radius:50%;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* Controls */
+.controls{display:flex;align-items:center;gap:.75rem}
+.btn{padding:.6rem 1.4rem;border-radius:.6rem;border:1.5px solid var(--border);background:var(--surface);color:var(--text);font-size:.85rem;font-weight:500;cursor:pointer;transition:all .18s;font-family:inherit;display:flex;align-items:center;gap:.4rem}
+.btn:hover{background:var(--surface2);border-color:var(--muted)}
+.btn:disabled{opacity:.3;cursor:not-allowed}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{filter:brightness(1.15)}
+.btn.icon{padding:.6rem .9rem;font-size:1rem}
+.btn.shuffle.on{background:var(--surface2);border-color:currentColor}
+
+/* Keyboard hint */
+.keys{display:flex;gap:.5rem;font-size:.72rem;color:var(--muted);align-items:center}
+.key{background:var(--surface2);border:1px solid var(--border);border-radius:.3rem;padding:.15rem .4rem;font-family:'JetBrains Mono',monospace;font-size:.68rem}
+
+/* End screen */
+.end-screen{text-align:center;max-width:400px}
+.end-screen h2{font-size:2rem;margin-bottom:.5rem}
+.end-screen p{color:var(--muted);margin-bottom:1.5rem}
+.star{font-size:3rem;margin-bottom:.75rem;display:block}
+
+/* Confetti dots */
+.chip{display:inline-block;width:10px;height:10px;border-radius:50%;margin:2px;animation:fall 2s ease-out forwards}
+@keyframes fall{from{transform:translateY(-20px) rotate(0);opacity:1}to{transform:translateY(60px) rotate(360deg);opacity:0}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useEffect, useCallback, useRef } = React;
+
+const CHAPTERS = [
+  {
+    id:1, label:"Ch 1", title:"Supervised Learning", color:"#6366f1",
+    cards:[
+      {q:"What is supervised learning?",a:"A type of machine learning where the model is trained on labeled data with known inputs and outputs."},
+      {q:"What are features in machine learning?",a:"Features are input variables used to make predictions."},
+      {q:"What are labels?",a:"Labels are the correct outputs or target values in supervised learning."},
+      {q:"What is classification?",a:"A type of supervised learning that predicts discrete categories."},
+      {q:"What is regression?",a:"A type of supervised learning that predicts continuous numerical values."},
+      {q:"Give an example of classification.",a:"Spam vs not spam email detection."},
+      {q:"Give an example of regression.",a:"Predicting house prices based on features."},
+      {q:"What is linear regression?",a:"A model that predicts a continuous output using a linear equation."},
+      {q:"What is the formula for linear regression?",a:"y = mx + b"},
+      {q:"What is logistic regression?",a:"A classification algorithm that predicts probabilities using a sigmoid function."},
+      {q:"What is the sigmoid function?",a:"A function that maps values to a range between 0 and 1."},
+      {q:"What is overfitting?",a:"When a model memorizes training data and performs poorly on new data."},
+      {q:"What is underfitting?",a:"When a model fails to learn patterns from data."},
+      {q:"What is accuracy?",a:"The ratio of correct predictions to total predictions."},
+      {q:"What is precision?",a:"The proportion of true positives among predicted positives."},
+      {q:"What is recall?",a:"The proportion of true positives among actual positives."},
+    ]
+  },
+  {
+    id:2, label:"Ch 2", title:"Unsupervised Learning", color:"#8b5cf6",
+    cards:[
+      {q:"What is unsupervised learning?",a:"A type of machine learning where the model learns patterns from unlabeled data."},
+      {q:"What is clustering?",a:"The process of grouping similar data points together."},
+      {q:"What is K-Means clustering?",a:"An algorithm that divides data into K clusters based on similarity."},
+      {q:"What is a centroid?",a:"The center point of a cluster."},
+      {q:"What is the Elbow Method?",a:"A technique used to find the optimal number of clusters using WCSS."},
+      {q:"What is WCSS?",a:"Within-cluster sum of squares, measuring cluster compactness."},
+      {q:"What is association rule learning?",a:"A method to find relationships between items in data."},
+      {q:"What is support?",a:"The frequency of occurrence of an itemset in the dataset."},
+      {q:"What is confidence?",a:"The probability that item Y occurs given item X."},
+      {q:"What is the Apriori algorithm?",a:"An algorithm that finds frequent itemsets using pruning."},
+      {q:"What is the Apriori principle?",a:"If an itemset is frequent, all its subsets must also be frequent."},
+      {q:"What is the ECLAT algorithm?",a:"An algorithm that uses transaction ID intersections to find frequent itemsets."},
+      {q:"What is the difference between K-Means and K-Medoids?",a:"K-Means uses mean as center, K-Medoids uses actual data points."},
+    ]
+  },
+  {
+    id:3, label:"Ch 3", title:"Neural Networks", color:"#06b6d4",
+    cards:[
+      {q:"What is a neural network?",a:"A system of interconnected neurons inspired by the human brain."},
+      {q:"What is an artificial neuron?",a:"A computational unit that processes inputs and produces output."},
+      {q:"What are weights?",a:"Values that determine the importance of each input."},
+      {q:"What is bias?",a:"A value added to shift the output."},
+      {q:"What is the neuron formula?",a:"z = sum(wx) + b"},
+      {q:"What is an activation function?",a:"A function that determines whether a neuron should activate."},
+      {q:"What is ReLU?",a:"An activation function that outputs max(0, x)."},
+      {q:"What is sigmoid?",a:"An activation function that outputs values between 0 and 1."},
+      {q:"What is tanh?",a:"An activation function that outputs values between -1 and 1."},
+      {q:"What is deep learning?",a:"Neural networks with multiple hidden layers."},
+      {q:"What is forward propagation?",a:"Passing inputs through the network to generate output."},
+      {q:"What is backpropagation?",a:"Updating weights based on error."},
+      {q:"What is gradient descent?",a:"An optimization method to minimize loss."},
+      {q:"What is an epoch?",a:"One complete pass through the dataset."},
+      {q:"What is an autoencoder?",a:"A neural network that compresses and reconstructs data."},
+    ]
+  },
+  {
+    id:4, label:"Ch 4", title:"Advanced Learning", color:"#f59e0b",
+    cards:[
+      {q:"What is ensemble learning?",a:"Combining multiple models to improve performance."},
+      {q:"What is bagging?",a:"Training models in parallel using random subsets of data."},
+      {q:"What is boosting?",a:"Training models sequentially to correct errors."},
+      {q:"What is the difference between bagging and boosting?",a:"Bagging is parallel, boosting is sequential."},
+      {q:"What is active learning?",a:"A method where the model asks for labels on uncertain data."},
+      {q:"What is instance-based learning?",a:"A method where the model memorizes and compares examples."},
+      {q:"What is KNN?",a:"An algorithm that classifies based on nearest neighbors."},
+      {q:"What is bias?",a:"Error due to overly simple model assumptions."},
+      {q:"What is variance?",a:"Error due to model sensitivity to data."},
+      {q:"How does bagging reduce overfitting?",a:"By reducing variance through multiple models."},
+      {q:"How does boosting improve performance?",a:"By focusing on correcting previous errors."},
+    ]
+  },
+  {
+    id:5, label:"Ch 5", title:"Reinforcement Learning", color:"#10b981",
+    cards:[
+      {q:"What is reinforcement learning?",a:"A type of learning where an agent learns through rewards and penalties."},
+      {q:"What is an agent?",a:"The entity that takes actions."},
+      {q:"What is an environment?",a:"The system the agent interacts with."},
+      {q:"What is a state?",a:"The current situation of the agent."},
+      {q:"What is an action?",a:"A decision taken by the agent."},
+      {q:"What is a reward?",a:"Feedback received after an action."},
+      {q:"What is exploration?",a:"Trying new actions."},
+      {q:"What is exploitation?",a:"Using known best actions."},
+      {q:"What is a policy?",a:"A strategy for choosing actions."},
+      {q:"What is a value function?",a:"A function that estimates expected rewards."},
+      {q:"What is Q-learning?",a:"A method to learn optimal actions using Q-values."},
+      {q:"What is the Q-learning formula?",a:"Q(s,a) = Q(s,a) + α[R + γ·max Q(s',a') − Q(s,a)]"},
+      {q:"What is the discount factor?",a:"A value that determines importance of future rewards."},
+      {q:"What is the Markov property?",a:"Future depends only on current state, not past."},
+      {q:"What is an episode?",a:"One complete interaction cycle."},
+    ]
+  }
+];
+
+function shuffle(arr) {
+  const a = [...arr.map((_,i)=>i)];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+
+function App() {
+  const [chIdx, setChIdx] = useState(0);
+  const [cardIdx, setCardIdx] = useState(0);
+  const [flipped, setFlipped] = useState(false);
+  const [isShuffled, setIsShuffled] = useState(false);
+  const [order, setOrder] = useState(null);
+  const [seen, setSeen] = useState(new Set());
+  const [done, setDone] = useState(false);
+  const [animDir, setAnimDir] = useState(null);
+
+  const ch = CHAPTERS[chIdx];
+  const cards = ch.cards;
+  const orderedCards = order ? order.map(i=>cards[i]) : cards;
+  const total = orderedCards.length;
+  const card = orderedCards[cardIdx];
+  const progress = ((cardIdx + (flipped?0.5:0)) / total) * 100;
+
+  const resetChapter = useCallback((idx, shuf=isShuffled) => {
+    setChIdx(idx);
+    setCardIdx(0);
+    setFlipped(false);
+    setSeen(new Set());
+    setDone(false);
+    setOrder(shuf ? shuffle(CHAPTERS[idx].cards) : null);
+  }, [isShuffled]);
+
+  const markSeen = useCallback(() => {
+    setSeen(s => { const n = new Set(s); n.add(cardIdx); return n; });
+  }, [cardIdx]);
+
+  const goNext = useCallback(() => {
+    if (cardIdx >= total - 1) { setDone(true); return; }
+    markSeen();
+    setFlipped(false);
+    setTimeout(() => setCardIdx(i => i + 1), 50);
+  }, [cardIdx, total, markSeen]);
+
+  const goPrev = useCallback(() => {
+    if (cardIdx <= 0) return;
+    setFlipped(false);
+    setTimeout(() => setCardIdx(i => i - 1), 50);
+  }, [cardIdx]);
+
+  const toggleFlip = () => { setFlipped(f => !f); markSeen(); };
+
+  const toggleShuffle = () => {
+    const next = !isShuffled;
+    setIsShuffled(next);
+    setOrder(next ? shuffle(cards) : null);
+    setCardIdx(0); setFlipped(false);
+  };
+
+  useEffect(() => {
+    const handler = (e) => {
+      if(done) return;
+      if(e.key === 'ArrowRight') goNext();
+      else if(e.key === 'ArrowLeft') goPrev();
+      else if(e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggleFlip(); }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [goNext, goPrev, done, flipped]);
+
+  return (
+    <div id="root">
+      {/* Header */}
+      <div className="header">
+        <div>
+          <div className="logo">⚡ MLC Flashcards</div>
+          <div className="subtitle">Machine Learning Fundamentals · 5 Chapters · {CHAPTERS.reduce((s,c)=>s+c.cards.length,0)} Cards</div>
+        </div>
+      </div>
+
+      {/* Chapter Tabs */}
+      <div className="tabs">
+        {CHAPTERS.map((c,i) => (
+          <button
+            key={c.id}
+            className={`tab${chIdx===i?' active':''}`}
+            style={chIdx===i?{backgroundColor:c.color,color:'#fff',borderColor:c.color}:{}}
+            onClick={() => resetChapter(i)}
+          >
+            {c.label}: {c.title}
+          </button>
+        ))}
+      </div>
+
+      {/* Main */}
+      <div className="main">
+        {done ? (
+          <div className="end-screen">
+            <span className="star">🎉</span>
+            <h2>Chapter Complete!</h2>
+            <p>You've reviewed all {total} cards in <strong style={{color:ch.color}}>{ch.title}</strong>.</p>
+            <div style={{display:'flex',gap:'.75rem',justifyContent:'center',flexWrap:'wrap'}}>
+              <button className="btn primary" style={{'--accent':ch.color}} onClick={() => resetChapter(chIdx)}>Restart Chapter</button>
+              {chIdx < CHAPTERS.length-1 && (
+                <button className="btn" onClick={() => resetChapter(chIdx+1)}>Next Chapter →</button>
+              )}
+            </div>
+          </div>
+        ) : (
+          <>
+            {/* Progress */}
+            <div className="progress-wrap">
+              <div className="progress-label">
+                <span>{ch.title}</span>
+                <span style={{color:ch.color}}>{cardIdx + 1} / {total}</span>
+              </div>
+              <div className="progress-track">
+                <div className="progress-fill" style={{width:`${progress}%`,background:ch.color}} />
+              </div>
+            </div>
+
+            {/* Stats */}
+            <div className="stats">
+              <span className="badge" style={{borderColor:ch.color,color:ch.color}}>{seen.size} seen</span>
+              <span className="badge">{total - seen.size} remaining</span>
+              {isShuffled && <span className="badge" style={{borderColor:'#f59e0b',color:'#f59e0b'}}>🔀 Shuffled</span>}
+            </div>
+
+            {/* Card */}
+            <div className="scene" onClick={toggleFlip} title="Click to flip">
+              <div className={`card${flipped?' flipped':''}`}>
+                <div className="face front" style={{borderColor: flipped ? 'var(--border)' : ch.color, boxShadow: flipped ? 'none' : `0 0 30px ${ch.color}22`}}>
+                  <div className="face-label" style={{color:ch.color}}>Question</div>
+                  <div className="face-text">{card.q}</div>
+                  {!flipped && <div className="tap-hint"><span className="tap-dot" style={{background:ch.color}}></span>Click to reveal answer</div>}
+                </div>
+                <div className="face back" style={{borderColor:ch.color, boxShadow:`0 0 30px ${ch.color}22`}}>
+                  <div className="face-label" style={{color:ch.color}}>Answer</div>
+                  <div className="face-text">{card.a}</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Controls */}
+            <div className="controls">
+              <button className="btn icon" onClick={goPrev} disabled={cardIdx===0} title="Previous (←)">←</button>
+              <button className="btn" onClick={toggleFlip} style={flipped?{borderColor:ch.color,color:ch.color}:{}}>
+                {flipped ? '🔒 Hide' : '👁 Reveal'}
+              </button>
+              <button className="btn" onClick={goNext} style={{borderColor:ch.color,color:ch.color}} title="Next (→)">
+                {cardIdx >= total-1 ? '✓ Finish' : 'Next →'}
+              </button>
+              <button className="btn icon shuffle" onClick={toggleShuffle} title="Toggle shuffle" style={isShuffled?{borderColor:'#f59e0b',color:'#f59e0b'}:{}}>🔀</button>
+            </div>
+
+            {/* Keyboard hint */}
+            <div className="keys">
+              <span className="key">←</span> Prev &nbsp;
+              <span className="key">Space</span> Flip &nbsp;
+              <span className="key">→</span> Next
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

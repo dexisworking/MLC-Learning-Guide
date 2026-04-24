@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MLC Guide — Chapter Reader</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0f;--surface:#13131a;--surface2:#1c1c28;--border:#2a2a3a;
+  --text:#e0e0f0;--muted:#7070a0;--accent:#6366f1;--accent2:#8b5cf6;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh}
+
+/* Topbar */
+.topbar{
+  position:fixed;top:0;left:0;right:0;height:56px;background:#13131aee;
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);display:flex;align-items:center;
+  padding:0 1.5rem;gap:.75rem;z-index:100;
+}
+.topbar a{text-decoration:none}
+.nav-btn{
+  padding:.4rem .85rem;border-radius:.5rem;border:1px solid var(--border);
+  color:var(--muted);font-size:.78rem;transition:all .2s;font-family:inherit;
+  background:transparent;cursor:pointer;display:inline-flex;align-items:center;gap:.3rem;
+}
+.nav-btn:hover{border-color:var(--accent);color:#fff}
+.nav-btn.active{border-color:var(--accent);color:var(--accent)}
+.topbar-title{font-size:.9rem;font-weight:600;color:#fff;margin-left:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar-right{margin-left:auto;display:flex;gap:.5rem}
+
+/* Loading */
+.loader{display:flex;justify-content:center;align-items:center;min-height:60vh;flex-direction:column;gap:1rem}
+.spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader-text{color:var(--muted);font-size:.85rem}
+
+/* Content container */
+.content-wrap{
+  max-width:820px;margin:0 auto;padding:5rem 2rem 4rem;
+  animation:fadeUp .5s ease both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* Markdown styles — GitHub-like dark */
+.md-body{line-height:1.75;font-size:.95rem}
+.md-body h1{font-size:1.8rem;font-weight:800;margin:2.5rem 0 1rem;color:#fff;
+  padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.md-body h1:first-child{margin-top:0}
+.md-body h2{font-size:1.35rem;font-weight:700;margin:2rem 0 .75rem;color:#e8e8ff}
+.md-body h3{font-size:1.1rem;font-weight:600;margin:1.5rem 0 .5rem;color:#d0d0f0}
+.md-body h4{font-size:1rem;font-weight:600;margin:1.25rem 0 .5rem;color:#c0c0e0}
+.md-body p{margin:.75rem 0;color:var(--text)}
+.md-body strong{color:#fff;font-weight:600}
+.md-body em{color:#b0b0d0}
+.md-body a{color:#a5b4fc;text-decoration:none;border-bottom:1px solid #a5b4fc40;transition:all .2s}
+.md-body a:hover{color:#c4b5fd;border-bottom-color:#c4b5fd}
+
+/* Blockquotes */
+.md-body blockquote{
+  border-left:3px solid var(--accent);background:var(--surface);
+  padding:.75rem 1.25rem;margin:1rem 0;border-radius:0 .5rem .5rem 0;
+  color:#b0b0d0;font-style:italic;
+}
+.md-body blockquote p{margin:.25rem 0}
+
+/* Note/Tip/Important alerts */
+.md-body blockquote:has(strong:first-child){border-left-color:#10b981;font-style:normal}
+
+/* Lists */
+.md-body ul,.md-body ol{padding-left:1.5rem;margin:.5rem 0}
+.md-body li{margin:.35rem 0}
+.md-body li::marker{color:var(--accent)}
+
+/* Code */
+.md-body code{
+  font-family:'JetBrains Mono',monospace;font-size:.85em;
+  background:var(--surface2);border:1px solid var(--border);
+  padding:.15rem .4rem;border-radius:.3rem;color:#c4b5fd;
+}
+.md-body pre{
+  background:var(--surface)!important;border:1px solid var(--border);
+  border-radius:.75rem;padding:1.25rem;margin:1rem 0;overflow-x:auto;
+  font-size:.85rem;line-height:1.6;
+}
+.md-body pre code{
+  background:transparent!important;border:none;padding:0;color:#e0e0f0;
+  font-size:.85rem;
+}
+
+/* Tables */
+.md-body table{
+  width:100%;border-collapse:collapse;margin:1rem 0;font-size:.88rem;
+  border:1px solid var(--border);border-radius:.5rem;overflow:hidden;
+}
+.md-body thead{background:var(--surface)}
+.md-body th{
+  text-align:left;padding:.6rem 1rem;font-weight:600;color:#c0c0e0;
+  border-bottom:2px solid var(--border);font-size:.82rem;text-transform:uppercase;
+  letter-spacing:.03em;
+}
+.md-body td{
+  padding:.55rem 1rem;border-bottom:1px solid var(--border);color:var(--text);
+}
+.md-body tbody tr:hover{background:var(--surface2)}
+.md-body tbody tr:last-child td{border-bottom:none}
+
+/* Horizontal rules */
+.md-body hr{
+  border:none;height:1px;background:var(--border);margin:2rem 0;
+}
+
+/* Images */
+.md-body img{max-width:100%;border-radius:.75rem;margin:1rem 0}
+
+/* Math */
+.md-body .katex-display{overflow-x:auto;padding:.5rem 0;margin:.5rem 0}
+
+/* Mermaid placeholder */
+.md-body pre code.language-mermaid{display:none}
+.mermaid{background:var(--surface);border:1px solid var(--border);border-radius:.75rem;padding:1.5rem;margin:1rem 0;text-align:center}
+.mermaid svg{max-width:100%}
+
+/* Scroll progress */
+.scroll-progress{position:fixed;top:56px;left:0;height:2px;background:var(--accent);z-index:99;transition:width .1s;width:0}
+
+/* Back to top */
+.back-top{
+  position:fixed;bottom:2rem;right:2rem;width:40px;height:40px;
+  border-radius:50%;background:var(--accent);color:#fff;border:none;
+  font-size:1.1rem;cursor:pointer;opacity:0;transform:translateY(10px);
+  transition:all .3s;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px #6366f140;z-index:100;
+}
+.back-top.visible{opacity:1;transform:translateY(0)}
+.back-top:hover{transform:translateY(-2px);box-shadow:0 6px 30px #6366f160}
+
+/* TOC sidebar */
+.toc{
+  position:fixed;top:56px;right:0;width:240px;height:calc(100vh - 56px);
+  background:var(--surface);border-left:1px solid var(--border);
+  padding:1.5rem 1rem;overflow-y:auto;font-size:.78rem;z-index:50;
+  transform:translateX(100%);transition:transform .3s ease;
+}
+.toc.open{transform:translateX(0)}
+.toc-title{font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.75rem}
+.toc a{display:block;padding:.3rem .5rem;border-radius:.3rem;color:var(--muted);text-decoration:none;transition:all .15s;line-height:1.4;margin-bottom:1px}
+.toc a:hover,.toc a.active{background:var(--surface2);color:#fff}
+.toc a.h2{padding-left:.5rem}
+.toc a.h3{padding-left:1.25rem;font-size:.73rem}
+
+/* Mobile */
+@media(max-width:768px){
+  .content-wrap{padding:4.5rem 1rem 3rem}
+  .topbar-title{display:none}
+  .toc{width:200px}
+  .md-body h1{font-size:1.4rem}
+  .md-body h2{font-size:1.15rem}
+  .md-body table{font-size:.8rem}
+  .md-body th,.md-body td{padding:.4rem .6rem}
+}
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<div class="topbar">
+  <a href="/index.html" class="nav-btn">← Home</a>
+  <a href="/flashcards.html" class="nav-btn">⚡ Flashcards</a>
+  <a href="/mindmap.html" class="nav-btn">🗺️ Mind Map</a>
+  <span class="topbar-title" id="topTitle">Loading...</span>
+  <div class="topbar-right">
+    <button class="nav-btn" id="tocToggle" onclick="document.getElementById('toc').classList.toggle('open')">📑 TOC</button>
+  </div>
+</div>
+
+<div class="toc" id="toc">
+  <div class="toc-title">Table of Contents</div>
+  <div id="tocList"></div>
+</div>
+
+<div class="content-wrap">
+  <div id="loader" class="loader">
+    <div class="spinner"></div>
+    <div class="loader-text">Loading chapter...</div>
+  </div>
+  <div class="md-body" id="content" style="display:none"></div>
+</div>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+mermaid.initialize({theme:'dark',themeVariables:{
+  primaryColor:'#6366f1',primaryTextColor:'#fff',primaryBorderColor:'#6366f1',
+  lineColor:'#505070',secondaryColor:'#1c1c28',tertiaryColor:'#13131a',
+  fontFamily:'Inter',fontSize:'13px',
+}});
+
+const params = new URLSearchParams(window.location.search);
+const filePath = params.get('file');
+const titleEl = document.getElementById('topTitle');
+const contentEl = document.getElementById('content');
+const loaderEl = document.getElementById('loader');
+const tocList = document.getElementById('tocList');
+
+if(!filePath){
+  window.location.href='/index.html';
+}
+
+// Fetch and render
+fetch('/'+filePath)
+  .then(r=>{
+    if(!r.ok) throw new Error('File not found');
+    return r.text();
+  })
+  .then(md=>{
+    // Pre-process: convert $$ blocks for KaTeX
+    // Replace $$...$$ blocks with spans
+    md = md.replace(/\$\$\s*([\s\S]*?)\s*\$\$/g, (m, tex) => {
+      try {
+        return '<div class="katex-display">' + katex.renderToString(tex.trim(), {displayMode:true, throwOnError:false}) + '</div>';
+      } catch(e) {
+        return '<pre><code>' + tex + '</code></pre>';
+      }
+    });
+
+    // Replace inline $...$ (not $$)
+    md = md.replace(/(?<!\$)\$(?!\$)((?:[^$\\]|\\.)+?)\$(?!\$)/g, (m, tex) => {
+      try {
+        return katex.renderToString(tex.trim(), {displayMode:false, throwOnError:false});
+      } catch(e) {
+        return '<code>' + tex + '</code>';
+      }
+    });
+
+    // Configure marked
+    marked.setOptions({
+      highlight: function(code, lang) {
+        if(lang && hljs.getLanguage(lang)){
+          return hljs.highlight(code, {language:lang}).value;
+        }
+        return hljs.highlightAuto(code).value;
+      },
+      gfm: true,
+      breaks: false,
+    });
+
+    const html = marked.parse(md);
+    contentEl.innerHTML = html;
+    contentEl.style.display = 'block';
+    loaderEl.style.display = 'none';
+
+    // Extract title
+    const h1 = contentEl.querySelector('h1');
+    if(h1) titleEl.textContent = h1.textContent;
+    document.title = (h1 ? h1.textContent : 'Chapter') + ' — MLC Guide';
+
+    // Render mermaid diagrams
+    const mermaidBlocks = contentEl.querySelectorAll('pre code.language-mermaid');
+    mermaidBlocks.forEach((block, i) => {
+      const pre = block.parentElement;
+      const div = document.createElement('div');
+      div.className = 'mermaid';
+      div.textContent = block.textContent;
+      pre.replaceWith(div);
+    });
+    mermaid.run();
+
+    // Build TOC
+    const headings = contentEl.querySelectorAll('h1, h2, h3');
+    headings.forEach((h, i) => {
+      const id = 'heading-' + i;
+      h.id = id;
+      const a = document.createElement('a');
+      a.href = '#' + id;
+      a.textContent = h.textContent;
+      a.className = h.tagName.toLowerCase();
+      a.onclick = () => document.getElementById('toc').classList.remove('open');
+      tocList.appendChild(a);
+    });
+
+    // Style GitHub-style alerts: > [!TIP], > [!NOTE], etc.
+    contentEl.querySelectorAll('blockquote').forEach(bq => {
+      const firstP = bq.querySelector('p');
+      if(!firstP) return;
+      const text = firstP.innerHTML;
+      const alertMatch = text.match(/^\s*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*/i);
+      if(alertMatch){
+        const type = alertMatch[1].toUpperCase();
+        const colors = {NOTE:'#3b82f6',TIP:'#10b981',IMPORTANT:'#8b5cf6',WARNING:'#f59e0b',CAUTION:'#ef4444'};
+        const icons = {NOTE:'ℹ️',TIP:'💡',IMPORTANT:'❗',WARNING:'⚠️',CAUTION:'🔴'};
+        bq.style.borderLeftColor = colors[type] || var(--accent);
+        bq.style.background = (colors[type]||'#6366f1') + '10';
+        firstP.innerHTML = '<strong style="color:' + (colors[type]||'#fff') + '">' + (icons[type]||'') + ' ' + type + '</strong><br>' + text.replace(alertMatch[0], '');
+      }
+    });
+  })
+  .catch(err=>{
+    loaderEl.innerHTML = '<div style="color:#ef4444;font-size:1.1rem">❌ Failed to load chapter</div><p style="color:var(--muted);margin-top:.5rem">'+err.message+'</p><a href="/index.html" class="nav-btn" style="margin-top:1rem">← Back to Home</a>';
+  });
+
+// Scroll progress + back to top
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('scrollProgress').style.width = total > 0 ? (scrolled/total*100)+'%' : '0';
+  document.getElementById('backTop').classList.toggle('visible', scrolled > 400);
+});
+</script>
+</body>
+</html>

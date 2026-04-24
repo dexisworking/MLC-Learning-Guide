@@ -12,14 +12,25 @@
   for = "/*.md"
   [headers.values]
     Cache-Control = "public, max-age=3600"
+    Content-Type  = "text/plain; charset=utf-8"
 
-# Clean URL: /flashcards → /flashcards.html
+# Clean URLs
 [[redirects]]
   from   = "/flashcards"
   to     = "/flashcards.html"
   status = 200
 
-# Fallback for anything not found
+[[redirects]]
+  from   = "/mindmap"
+  to     = "/mindmap.html"
+  status = 200
+
+[[redirects]]
+  from   = "/reader"
+  to     = "/reader.html"
+  status = 200
+
+# Fallback
 [[redirects]]
   from   = "/*"
   to     = "/index.html"

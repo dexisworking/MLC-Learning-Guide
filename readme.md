@@ -4,7 +4,14 @@
 
 **Duration:** 4–6 Weeks (intensive mode) | **Daily Time:** 6–10 hrs
 
-🚀 **Spotlight:** View the interactive guide & flashcards at [mlcguidedex.netlify.app](https://mlcguidedex.netlify.app/)
+---
+
+> ## 🚀 [View the Live Interactive Guide →](https://mlcguidedex.netlify.app/)
+> **Flashcards** · **Mind Map** · **Chapter Reader** — all in one place, fully free.
+
+---
+
+📝 **Resources:** [MLC Theory Notes (PDF)](./MLC%20Theory%20NOTES.pdf) · [MLC Important Codes (PDF)](./MLC%20Important%20Codes.pdf)
 
 ---
 
@@ -19,14 +26,14 @@
 
 ## 🗺️ Chapter Navigation
 
-| Chapter | Topic | File | Difficulty |
-|---------|-------|------|------------|
-| Phase 0 | Foundation Setup | — | 🟢 Beginner |
-| 📊 Chapter 1 | [Supervised Learning](./Chapter%201%20-%20Supervised%20Learning/chap1.md) | `chap1.md` | 🟢 Beginner |
-| 🧩 Chapter 2 | [Unsupervised Learning](./Chapter%202%20-%20Unsupervised%20Learning/chap2.md) | `chap2.md` | 🟡 Intermediate |
-| 🤖 Chapter 3 | [Neural Networks & Deep Learning](./Chapter%203%20-%20Neural%20Networks/chap3.md) | `chap3.md` | 🟡 Intermediate |
-| 🤝 Chapter 4 | [Advanced Learning Techniques](./Chapter%204%20-%20Advanced%20Learning/Infographics/chap4.md) | `chap4.md` | 🔴 Advanced |
-| 🎮 Chapter 5 | [Reinforcement Learning](./Chapter%205%20-%20Reinforcement%20Learning/Infographics/chap5.md) | `chap5.md` | 🔴 Advanced |
+| Chapter      | Topic                                                                                         | File       | Difficulty      |
+| ------------ | --------------------------------------------------------------------------------------------- | ---------- | --------------- |
+| Phase 0      | Foundation Setup                                                                              | —          | 🟢 Beginner     |
+| 📊 Chapter 1 | [Supervised Learning](./Chapter%201%20-%20Supervised%20Learning/chap1.md)                     | `chap1.md` | 🟢 Beginner     |
+| 🧩 Chapter 2 | [Unsupervised Learning](./Chapter%202%20-%20Unsupervised%20Learning/chap2.md)                 | `chap2.md` | 🟡 Intermediate |
+| 🤖 Chapter 3 | [Neural Networks & Deep Learning](./Chapter%203%20-%20Neural%20Networks/chap3.md)             | `chap3.md` | 🟡 Intermediate |
+| 🤝 Chapter 4 | [Advanced Learning Techniques](./Chapter%204%20-%20Advanced%20Learning/Infographics/chap4.md) | `chap4.md` | 🔴 Advanced     |
+| 🎮 Chapter 5 | [Reinforcement Learning](./Chapter%205%20-%20Reinforcement%20Learning/Infographics/chap5.md)  | `chap5.md` | 🔴 Advanced     |
 
 ---
 
@@ -73,11 +80,11 @@ You can load, clean, and visualize a dataset.
 
 ### 📚 Key Algorithms
 
-| Algorithm | Type | Use Case |
-|-----------|------|---------|
-| Linear Regression | Regression | House prices, salary |
+| Algorithm           | Type           | Use Case                |
+| ------------------- | -------------- | ----------------------- |
+| Linear Regression   | Regression     | House prices, salary    |
 | Logistic Regression | Classification | Spam, disease detection |
-| Decision Tree | Both | General purpose |
+| Decision Tree       | Both           | General purpose         |
 
 ### 🛠 Practice Projects
 
@@ -102,11 +109,11 @@ Understand how models learn from labeled data.
 
 ### 📚 Key Algorithms
 
-| Algorithm | Type | Use Case |
-|-----------|------|---------|
-| K-Means | Clustering | Customer segmentation |
-| Apriori | Association | Market basket analysis |
-| PCA | Dimensionality Reduction | Feature compression |
+| Algorithm | Type                     | Use Case               |
+| --------- | ------------------------ | ---------------------- |
+| K-Means   | Clustering               | Customer segmentation  |
+| Apriori   | Association              | Market basket analysis |
+| PCA       | Dimensionality Reduction | Feature compression    |
 
 ### 🛠 Practice Projects
 
@@ -131,11 +138,11 @@ Ability to find hidden patterns in unlabeled data.
 
 ### 📚 Key Algorithms
 
-| Algorithm | Use Case |
-|-----------|---------|
-| Perceptron | Simple binary classification |
+| Algorithm                  | Use Case                          |
+| -------------------------- | --------------------------------- |
+| Perceptron                 | Simple binary classification      |
 | Feedforward Neural Network | General classification/regression |
-| Autoencoder | Data compression |
+| Autoencoder                | Data compression                  |
 
 ### 🛠 Practice Projects
 
@@ -160,11 +167,11 @@ Understand how AI models mimic the brain.
 
 ### 📚 Key Algorithms
 
-| Algorithm | Type | Use Case |
-|-----------|------|---------|
-| Random Forest | Bagging | General classification |
-| AdaBoost / XGBoost | Boosting | High-accuracy tasks |
-| KNN | Instance-Based | Recommendation, classification |
+| Algorithm          | Type           | Use Case                       |
+| ------------------ | -------------- | ------------------------------ |
+| Random Forest      | Bagging        | General classification         |
+| AdaBoost / XGBoost | Boosting       | High-accuracy tasks            |
+| KNN                | Instance-Based | Recommendation, classification |
 
 ### 🛠 Practice Projects
 
@@ -204,13 +211,13 @@ Understand how agents learn decision-making through interaction.
 
 ### 💡 Must-Build Projects
 
-| Project | Chapter | Tech |
-|---------|---------|------|
-| 📧 Spam Detection System | Chapter 1 | Logistic Regression |
-| 🏠 House Price Predictor | Chapter 1 | Linear Regression |
-| 👥 Customer Segmentation Tool | Chapter 2 | K-Means |
-| 🔢 Neural Network Demo | Chapter 3 | TensorFlow / PyTorch |
-| 🎮 RL Game Agent | Chapter 5 | Q-Learning |
+| Project                       | Chapter   | Tech                 |
+| ----------------------------- | --------- | -------------------- |
+| 📧 Spam Detection System      | Chapter 1 | Logistic Regression  |
+| 🏠 House Price Predictor      | Chapter 1 | Linear Regression    |
+| 👥 Customer Segmentation Tool | Chapter 2 | K-Means              |
+| 🔢 Neural Network Demo        | Chapter 3 | TensorFlow / PyTorch |
+| 🎮 RL Game Agent              | Chapter 5 | Q-Learning           |
 
 ### 🎯 Outcome
 
@@ -222,19 +229,20 @@ Understand how agents learn decision-making through interaction.
 
 ## ⚡ Daily Study Structure
 
-| Time Block | Activity |
-|-----------|---------|
-| 2 hrs | Concept learning (read infographic, watch lecture) |
-| 3 hrs | Coding & practice |
-| 2 hrs | Project work |
-| 1 hr | Revision & flashcards |
-| 1 hr | Notes & diagrams |
+| Time Block | Activity                                           |
+| ---------- | -------------------------------------------------- |
+| 2 hrs      | Concept learning (read infographic, watch lecture) |
+| 3 hrs      | Coding & practice                                  |
+| 2 hrs      | Project work                                       |
+| 1 hr       | Revision & flashcards                              |
+| 1 hr       | Notes & diagrams                                   |
 
 ---
 
 ## 🔥 Pro Tips
 
 > [!TIP]
+>
 > - Use **NotebookLM** to generate summaries from these notes
 > - Learn visually first → code second → teach it to solidify
 > - Track your progress by checking off each phase
@@ -243,10 +251,10 @@ Understand how agents learn decision-making through interaction.
 
 ## 📚 Recommended Resources
 
-| Resource | Link | Type |
-|----------|------|------|
-| Google ML Crash Course | [link](https://developers.google.com/machine-learning/crash-course) | Free Course |
-| Andrew Ng ML Specialization | [Coursera](https://www.coursera.org/specializations/machine-learning-introduction) | Course |
-| Kaggle Learn | [link](https://www.kaggle.com/learn) | Interactive |
-| StatQuest (YouTube) | [link](https://www.youtube.com/@statquest) | Videos |
-| Scikit-Learn Docs | [link](https://scikit-learn.org/stable/) | Reference |
+| Resource                    | Link                                                                               | Type        |
+| --------------------------- | ---------------------------------------------------------------------------------- | ----------- |
+| Google ML Crash Course      | [link](https://developers.google.com/machine-learning/crash-course)                | Free Course |
+| Andrew Ng ML Specialization | [Coursera](https://www.coursera.org/specializations/machine-learning-introduction) | Course      |
+| Kaggle Learn                | [link](https://www.kaggle.com/learn)                                               | Interactive |
+| StatQuest (YouTube)         | [link](https://www.youtube.com/@statquest)                                         | Videos      |
+| Scikit-Learn Docs           | [link](https://scikit-learn.org/stable/)                                           | Reference   |

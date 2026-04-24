@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ML Mind Map — MLC Learning Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0a0f;font-family:'Inter',sans-serif;overflow:hidden;height:100vh}
+.topbar{position:fixed;top:0;left:0;right:0;height:54px;background:#13131aee;backdrop-filter:blur(12px);
+  border-bottom:1px solid #2a2a3a;display:flex;align-items:center;padding:0 1.25rem;gap:1rem;z-index:100}
+.logo{font-size:1rem;font-weight:700;background:linear-gradient(135deg,#6366f1,#8b5cf6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
+.back{padding:.35rem .85rem;border-radius:.5rem;border:1px solid #2a2a3a;color:#a0a0c0;
+  font-size:.78rem;text-decoration:none;transition:all .18s;font-family:inherit;background:transparent;cursor:pointer}
+.back:hover{border-color:#6366f1;color:#fff}
+.hint{margin-left:auto;font-size:.72rem;color:#5050708;display:flex;gap:1rem;align-items:center}
+.hint span{color:#505070}
+.hint b{color:#a5b4fc}
+.legend{display:flex;gap:.75rem;flex-wrap:wrap}
+.leg{display:flex;align-items:center;gap:.35rem;font-size:.72rem;color:#a0a0c0}
+.leg-dot{width:9px;height:9px;border-radius:50%}
+svg{width:100vw;height:100vh;cursor:grab}
+svg:active{cursor:grabbing}
+.node circle{stroke-width:2;transition:all .25s}
+.node text{font-family:'Inter',sans-serif;fill:#e0e0f0;pointer-events:none}
+.node .root-label{font-weight:700;font-size:14px}
+.link{fill:none;stroke-width:1.5;opacity:.5}
+.tooltip{position:fixed;background:#1c1c28;border:1px solid #2a2a3a;border-radius:.6rem;
+  padding:.5rem .85rem;font-size:.78rem;color:#e0e0f0;pointer-events:none;opacity:0;
+  transition:opacity .15s;z-index:200;max-width:220px}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="/index.html" class="back">← Home</a>
+  <div class="logo">🗺️ ML Mind Map</div>
+  <div class="legend">
+    <div class="leg"><div class="leg-dot" style="background:#6366f1"></div>Supervised</div>
+    <div class="leg"><div class="leg-dot" style="background:#8b5cf6"></div>Unsupervised</div>
+    <div class="leg"><div class="leg-dot" style="background:#06b6d4"></div>Neural Networks</div>
+    <div class="leg"><div class="leg-dot" style="background:#f59e0b"></div>Advanced</div>
+    <div class="leg"><div class="leg-dot" style="background:#10b981"></div>Reinforcement</div>
+  </div>
+  <div class="hint"><span>Click nodes to expand · Scroll to zoom · Drag to pan</span></div>
+</div>
+<svg id="svg"></svg>
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+const DATA = {
+  name:"Machine Learning", color:"#a5b4fc", info:"5 chapters · 70 flashcards",
+  children:[
+    { name:"Supervised Learning", color:"#6366f1", info:"Learn from labeled data",
+      children:[
+        { name:"Classification", color:"#818cf8", info:"Predict discrete categories",
+          children:[
+            { name:"Logistic Regression", color:"#818cf8", info:"Sigmoid function → probability" },
+            { name:"Decision Trees", color:"#818cf8", info:"Split data on feature thresholds" },
+            { name:"SVM", color:"#818cf8", info:"Maximize margin between classes" },
+            { name:"Naive Bayes", color:"#818cf8", info:"Probabilistic classifier" },
+          ]},
+        { name:"Regression", color:"#818cf8", info:"Predict continuous values",
+          children:[
+            { name:"Linear Regression", color:"#818cf8", info:"y = mx + b" },
+            { name:"Ridge / Lasso", color:"#818cf8", info:"Regularized regression variants" },
+          ]},
+        { name:"Evaluation", color:"#818cf8", info:"Measuring model performance",
+          children:[
+            { name:"Accuracy & F1", color:"#818cf8", info:"Classification metrics" },
+            { name:"MSE · RMSE · R²", color:"#818cf8", info:"Regression metrics" },
+            { name:"Precision & Recall", color:"#818cf8", info:"Trade-off in classification" },
+          ]},
+        { name:"Key Concepts", color:"#818cf8", info:"Core ideas",
+          children:[
+            { name:"Overfitting", color:"#818cf8", info:"Memorizes training data" },
+            { name:"Underfitting", color:"#818cf8", info:"Too simple to learn patterns" },
+            { name:"Train/Test Split", color:"#818cf8", info:"Evaluate on unseen data" },
+          ]},
+      ]},
+    { name:"Unsupervised Learning", color:"#8b5cf6", info:"Find patterns in unlabeled data",
+      children:[
+        { name:"Clustering", color:"#a78bfa", info:"Group similar data points",
+          children:[
+            { name:"K-Means", color:"#a78bfa", info:"Divide into K clusters by centroid" },
+            { name:"K-Medoids", color:"#a78bfa", info:"Uses actual data point as center" },
+            { name:"DBSCAN", color:"#a78bfa", info:"Density-based clustering" },
+            { name:"Hierarchical", color:"#a78bfa", info:"Agglomerative or divisive" },
+          ]},
+        { name:"Elbow Method", color:"#a78bfa", info:"Find optimal K using WCSS" },
+        { name:"Association Rules", color:"#a78bfa", info:"Find item co-occurrence patterns",
+          children:[
+            { name:"Apriori", color:"#a78bfa", info:"Breadth-first frequent itemsets" },
+            { name:"ECLAT", color:"#a78bfa", info:"Vertical TID-list intersections" },
+            { name:"Support · Confidence · Lift", color:"#a78bfa", info:"Rule quality metrics" },
+          ]},
+        { name:"Dimensionality Reduction", color:"#a78bfa", info:"Compress feature space",
+          children:[
+            { name:"PCA", color:"#a78bfa", info:"Principal Component Analysis" },
+            { name:"t-SNE", color:"#a78bfa", info:"Non-linear visualization" },
+          ]},
+      ]},
+    { name:"Neural Networks", color:"#06b6d4", info:"Brain-inspired computing",
+      children:[
+        { name:"Neuron Model", color:"#22d3ee", info:"z = Σ(wx) + b → f(z)",
+          children:[
+            { name:"Weights & Bias", color:"#22d3ee", info:"Learnable parameters" },
+            { name:"Activation Functions", color:"#22d3ee", info:"Non-linearity",
+              children:[
+                { name:"ReLU", color:"#22d3ee", info:"max(0, x) — most common" },
+                { name:"Sigmoid", color:"#22d3ee", info:"Output: (0,1)" },
+                { name:"Tanh", color:"#22d3ee", info:"Output: (-1,1)" },
+                { name:"Softmax", color:"#22d3ee", info:"Multiclass probabilities" },
+              ]},
+          ]},
+        { name:"Training Process", color:"#22d3ee", info:"How networks learn",
+          children:[
+            { name:"Forward Propagation", color:"#22d3ee", info:"Input → Output" },
+            { name:"Loss Function", color:"#22d3ee", info:"Measures prediction error" },
+            { name:"Backpropagation", color:"#22d3ee", info:"Propagate gradients backward" },
+            { name:"Gradient Descent", color:"#22d3ee", info:"w = w − α·∂L/∂w" },
+          ]},
+        { name:"Architecture Types", color:"#22d3ee", info:"Network designs",
+          children:[
+            { name:"Perceptron", color:"#22d3ee", info:"Single layer, linear boundary" },
+            { name:"Deep NN (DNN)", color:"#22d3ee", info:"Multiple hidden layers" },
+            { name:"CNN", color:"#22d3ee", info:"Convolutional — for images" },
+            { name:"RNN / LSTM", color:"#22d3ee", info:"Recurrent — for sequences" },
+            { name:"Autoencoder", color:"#22d3ee", info:"Compress and reconstruct" },
+          ]},
+        { name:"Key Terms", color:"#22d3ee", info:"Important concepts",
+          children:[
+            { name:"Epoch", color:"#22d3ee", info:"Full pass through dataset" },
+            { name:"Batch Size", color:"#22d3ee", info:"Samples per weight update" },
+            { name:"Dropout", color:"#22d3ee", info:"Regularization technique" },
+          ]},
+      ]},
+    { name:"Advanced Learning", color:"#f59e0b", info:"Beyond single models",
+      children:[
+        { name:"Ensemble Methods", color:"#fbbf24", info:"Combine models for accuracy",
+          children:[
+            { name:"Bagging", color:"#fbbf24", info:"Parallel — reduces variance",
+              children:[
+                { name:"Random Forest", color:"#fbbf24", info:"Bagging + random features" },
+              ]},
+            { name:"Boosting", color:"#fbbf24", info:"Sequential — reduces bias",
+              children:[
+                { name:"AdaBoost", color:"#fbbf24", info:"Reweights misclassified samples" },
+                { name:"Gradient Boosting", color:"#fbbf24", info:"Fits residual errors" },
+                { name:"XGBoost", color:"#fbbf24", info:"Optimized & regularized GB" },
+              ]},
+            { name:"Stacking", color:"#fbbf24", info:"Meta-learner on predictions" },
+          ]},
+        { name:"Active Learning", color:"#fbbf24", info:"Query uncertain samples for labels" },
+        { name:"KNN", color:"#fbbf24", info:"K-Nearest Neighbors",
+          children:[
+            { name:"Distance Metrics", color:"#fbbf24", info:"Euclidean, Manhattan, Cosine" },
+            { name:"Choosing K", color:"#fbbf24", info:"K = √n as starting point" },
+          ]},
+        { name:"Bias–Variance Trade-off", color:"#fbbf24", info:"Core ML balance concept" },
+      ]},
+    { name:"Reinforcement Learning", color:"#10b981", info:"Learn through interaction",
+      children:[
+        { name:"Core Components", color:"#34d399", info:"The RL framework",
+          children:[
+            { name:"Agent", color:"#34d399", info:"The learner / decision-maker" },
+            { name:"Environment", color:"#34d399", info:"The world agent acts in" },
+            { name:"State · Action · Reward", color:"#34d399", info:"The RL loop" },
+            { name:"Policy π", color:"#34d399", info:"Maps states to actions" },
+          ]},
+        { name:"Value Functions", color:"#34d399", info:"Estimate future rewards",
+          children:[
+            { name:"V(s) — State Value", color:"#34d399", info:"Expected reward from state s" },
+            { name:"Q(s,a) — Action Value", color:"#34d399", info:"Expected reward for action a" },
+          ]},
+        { name:"Q-Learning", color:"#34d399", info:"Off-policy TD learning",
+          children:[
+            { name:"Q-Table", color:"#34d399", info:"Stores Q-values per (s,a) pair" },
+            { name:"Bellman Equation", color:"#34d399", info:"Q = Q + α[R + γ·maxQ' − Q]" },
+            { name:"ε-Greedy Strategy", color:"#34d399", info:"Balance explore vs exploit" },
+          ]},
+        { name:"Key Concepts", color:"#34d399", info:"Advanced RL ideas",
+          children:[
+            { name:"Discount Factor γ", color:"#34d399", info:"Value of future rewards" },
+            { name:"Markov Property", color:"#34d399", info:"Future depends only on now" },
+            { name:"Episode", color:"#34d399", info:"One complete interaction cycle" },
+            { name:"Exploration vs Exploitation", color:"#34d399", info:"Core RL dilemma" },
+          ]},
+        { name:"Algorithm Types", color:"#34d399", info:"RL taxonomy",
+          children:[
+            { name:"Model-Free", color:"#34d399", info:"Q-Learning, SARSA, DQN" },
+            { name:"Policy Gradient", color:"#34d399", info:"REINFORCE, PPO, A3C" },
+          ]},
+      ]},
+  ]
+};
+
+const W = window.innerWidth, H = window.innerHeight;
+const margin = { top: 54, left: 60 };
+
+const svg = d3.select("#svg");
+const g = svg.append("g").attr("transform", `translate(${margin.left},${H/2})`);
+
+svg.call(d3.zoom().scaleExtent([0.15, 2.5]).on("zoom", e => g.attr("transform", e.transform)));
+
+const tree = d3.tree().nodeSize([26, 220]);
+const diagonal = d3.linkHorizontal().x(d => d.y).y(d => d.x);
+
+const root = d3.hierarchy(DATA);
+root.x0 = 0; root.y0 = 0;
+
+// Collapse all except root
+function collapse(d) {
+  if (d.children) { d._children = d.children; d._children.forEach(collapse); d.children = null; }
+}
+root.children.forEach(collapse);
+
+const tooltip = document.getElementById("tooltip");
+
+function update(src) {
+  const nodes = root.descendants();
+  const links = root.links();
+  tree(root);
+
+  const duration = 300;
+
+  // Nodes
+  const node = g.selectAll("g.node").data(nodes, d => d.id || (d.id = ++update.i));
+
+  const enter = node.enter().append("g").attr("class","node")
+    .attr("transform", d => `translate(${src.y0},${src.x0})`)
+    .style("cursor","pointer")
+    .on("click", (e, d) => {
+      if (d.children) { d._children = d.children; d.children = null; }
+      else { d.children = d._children; d._children = null; }
+      update(d);
+    })
+    .on("mousemove", (e, d) => {
+      if (!d.data.info) return;
+      tooltip.style.opacity = 1;
+      tooltip.style.left = (e.clientX + 12) + "px";
+      tooltip.style.top  = (e.clientY - 10) + "px";
+      tooltip.innerHTML = `<b style="color:${d.data.color}">${d.data.name}</b><br>${d.data.info}`;
+    })
+    .on("mouseleave", () => tooltip.style.opacity = 0);
+
+  enter.append("circle").attr("r", 0)
+    .style("fill", d => d._children ? d.data.color : (d.children ? "#1c1c28" : "#0a0a0f"))
+    .style("stroke", d => d.data.color);
+
+  enter.append("text")
+    .attr("dy","0.32em")
+    .attr("x", d => (d.children || d._children) ? -10 : 10)
+    .style("text-anchor", d => (d.children || d._children) ? "end" : "start")
+    .style("font-size", d => d.depth === 0 ? "14px" : d.depth === 1 ? "12px" : "11px")
+    .style("font-weight", d => d.depth <= 1 ? "600" : "400")
+    .style("fill", d => d.depth === 0 ? "#fff" : d.data.color)
+    .text(d => d.data.name)
+    .style("opacity", 0);
+
+  // Expand indicator
+  enter.append("text").attr("class","expander")
+    .attr("dy","0.32em").attr("x", 0)
+    .style("text-anchor","middle").style("font-size","9px").style("fill","#fff").style("pointer-events","none");
+
+  const nodeUpdate = enter.merge(node);
+  nodeUpdate.transition().duration(duration)
+    .attr("transform", d => `translate(${d.y},${d.x})`);
+
+  nodeUpdate.select("circle").transition().duration(duration)
+    .attr("r", d => d.depth === 0 ? 8 : d.depth === 1 ? 6 : 4)
+    .style("fill", d => d._children ? d.data.color : (d.children ? "#1c1c28" : d.data.color + "40"))
+    .style("stroke", d => d.data.color)
+    .style("stroke-opacity", d => d.depth === 0 ? 1 : 0.7);
+
+  nodeUpdate.select("text:not(.expander)").transition().duration(duration).style("opacity",1)
+    .attr("x", d => (d.children || d._children) ? -10 : 10)
+    .style("text-anchor", d => (d.children || d._children) ? "end" : "start");
+
+  nodeUpdate.select("text.expander")
+    .text(d => d._children ? "+" : d.children && d.children.length ? "−" : "");
+
+  node.exit().transition().duration(duration)
+    .attr("transform", d => `translate(${src.y},${src.x})`).remove()
+    .select("circle").attr("r",0);
+  node.exit().select("text").style("opacity",0);
+
+  // Links
+  const link = g.selectAll("path.link").data(links, d => d.target.id);
+  link.enter().insert("path","g").attr("class","link")
+    .style("stroke", d => d.target.data.color)
+    .attr("d", () => {const o={x:src.x0,y:src.y0}; return diagonal({source:o,target:o});})
+    .merge(link).transition().duration(duration).attr("d", diagonal);
+
+  link.exit().transition().duration(duration)
+    .attr("d", () => {const o={x:src.x,y:src.y}; return diagonal({source:o,target:o});}).remove();
+
+  nodes.forEach(d => { d.x0 = d.x; d.y0 = d.y; });
+}
+update.i = 0;
+update(root);
+
+// Center initially
+const initX = W * 0.12, initY = H / 2;
+svg.call(d3.zoom().scaleExtent([0.15,2.5]).on("zoom", e => g.attr("transform",e.transform))
+   .transform, svg, d3.zoomIdentity.translate(initX, initY).scale(0.75));
+</script>
+</body>
+</html>

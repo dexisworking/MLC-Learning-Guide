@@ -1,0 +1,26 @@
+[build]
+  publish = "."
+  command  = ""
+
+# Cache static assets
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/*.md"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+# Clean URL: /flashcards → /flashcards.html
+[[redirects]]
+  from   = "/flashcards"
+  to     = "/flashcards.html"
+  status = 200
+
+# Fallback for anything not found
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 404

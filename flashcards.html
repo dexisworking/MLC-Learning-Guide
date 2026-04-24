@@ -260,6 +260,10 @@ function App() {
           <div className="logo">⚡ MLC Flashcards</div>
           <div className="subtitle">Machine Learning Fundamentals · 5 Chapters · {CHAPTERS.reduce((s,c)=>s+c.cards.length,0)} Cards</div>
         </div>
+        <div style={{marginLeft:'auto',display:'flex',gap:'.5rem'}}>
+          <a href="/mindmap.html" style={{padding:'.4rem .9rem',borderRadius:'.5rem',border:'1px solid #2a2a3a',color:'#a5b4fc',fontSize:'.78rem',textDecoration:'none'}}>🗺️ Mind Map</a>
+          <a href="/index.html" style={{padding:'.4rem .9rem',borderRadius:'.5rem',border:'1px solid #2a2a3a',color:'#a0a0c0',fontSize:'.78rem',textDecoration:'none'}}>← Home</a>
+        </div>
       </div>
 
       {/* Chapter Tabs */}

@@ -4,6 +4,8 @@
 
 **Duration:** 4–6 Weeks (intensive mode) | **Daily Time:** 6–10 hrs
 
+🚀 **Spotlight:** View the interactive guide & flashcards at [mlcguidedex.netlify.app](https://mlcguidedex.netlify.app/)
+
 ---
 
 ## 📚 How to Use This Guide

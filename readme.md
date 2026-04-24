@@ -1,920 +1,250 @@
-# 🎯 Goal
+# 🎯 MLC Learning Guide — Machine Learning Fundamentals
 
-Build strong fundamentals in Machine Learning + practical implementation skills + project portfolio.
+> Build strong fundamentals in Machine Learning + practical implementation skills + project portfolio.
 
-Duration: 4–6 Weeks (intensive mode)  
-Daily Time: 6–10 hrs (adjustable)
-
----
-
-# 🧭 PHASE 0: Foundation Setup (Day 1–2)
-
-## 🧰 What You Need
-
-- Python basics (loops, functions, lists)
-- Libraries: NumPy, Pandas, Matplotlib
-
-## 📌 Tasks
-
-- Install Python + Jupyter Notebook
-- Learn basic data handling
-- Practice simple plots
-
-## 📊 Learning Flow
-
-![Python Workflow](https://source.unsplash.com/featured/?python,data)
-
-👉 Outcome:
-
-- You can load, clean, and visualize data
+**Duration:** 4–6 Weeks (intensive mode) | **Daily Time:** 6–10 hrs
 
 ---
 
-# 🧠 PHASE 1: Supervised Learning (Week 1)
+## 📚 How to Use This Guide
 
-## 🔑 Concepts
+1. Follow the chapters **in order** — each builds on the previous one
+2. Read the chapter infographic (`.md` file) before coding
+3. Practice with the suggested projects at the end of each chapter
+4. Use the daily routine structure to stay consistent
 
-- What is ML?
-- Supervised Learning
+---
+
+## 🗺️ Chapter Navigation
+
+| Chapter | Topic | File | Difficulty |
+|---------|-------|------|------------|
+| Phase 0 | Foundation Setup | — | 🟢 Beginner |
+| 📊 Chapter 1 | [Supervised Learning](./Chapter%201%20-%20Supervised%20Learning/chap1.md) | `chap1.md` | 🟢 Beginner |
+| 🧩 Chapter 2 | [Unsupervised Learning](./Chapter%202%20-%20Unsupervised%20Learning/chap2.md) | `chap2.md` | 🟡 Intermediate |
+| 🤖 Chapter 3 | [Neural Networks & Deep Learning](./Chapter%203%20-%20Neural%20Networks/chap3.md) | `chap3.md` | 🟡 Intermediate |
+| 🤝 Chapter 4 | [Advanced Learning Techniques](./Chapter%204%20-%20Advanced%20Learning/Infographics/chap4.md) | `chap4.md` | 🔴 Advanced |
+| 🎮 Chapter 5 | [Reinforcement Learning](./Chapter%205%20-%20Reinforcement%20Learning/Infographics/chap5.md) | `chap5.md` | 🔴 Advanced |
+
+---
+
+## 🗺️ Learning Roadmap
+
+```mermaid
+flowchart LR
+    A["🧰 Phase 0\nFoundations\nDay 1–2"] --> B["📊 Chapter 1\nSupervised\nWeek 1"]
+    B --> C["🧩 Chapter 2\nUnsupervised\nWeek 2"]
+    C --> D["🤖 Chapter 3\nNeural Networks\nWeek 3"]
+    D --> E["🤝 Chapter 4\nAdvanced\nWeek 4"]
+    E --> F["🎮 Chapter 5\nReinforcement\nWeek 5"]
+    F --> G["🚀 Phase 6\nProjects\nWeek 6"]
+```
+
+---
+
+## 🧭 Phase 0: Foundation Setup (Day 1–2)
+
+### 🧰 What You Need
+
+- Python basics (loops, functions, lists, dicts)
+- Libraries: **NumPy**, **Pandas**, **Matplotlib**
+
+### 📌 Setup Tasks
+
+- [ ] Install Python + Jupyter Notebook / VS Code
+- [ ] Learn basic data handling with Pandas
+- [ ] Practice simple plots with Matplotlib
+
+### 🎯 Outcome
+
+You can load, clean, and visualize a dataset.
+
+---
+
+## 📊 Phase 1: Supervised Learning (Week 1)
+
+### 🔑 Concepts
+
+- What is ML? Labeled data, training, testing
 - Classification vs Regression
-
-## 📚 Topics
-
-- Linear Regression
-- Logistic Regression
 - Evaluation metrics
 
-## 🔁 Learning Flow
+### 📚 Key Algorithms
 
-![Supervised Learning](https://source.unsplash.com/featured/?machinelearning,ai)
+| Algorithm | Type | Use Case |
+|-----------|------|---------|
+| Linear Regression | Regression | House prices, salary |
+| Logistic Regression | Classification | Spam, disease detection |
+| Decision Tree | Both | General purpose |
 
-## 🛠 Practice
+### 🛠 Practice Projects
 
-- Predict house prices
-- Spam email classifier
+- 🏠 Predict house prices (Linear Regression)
+- 📧 Spam email classifier (Logistic Regression)
 
-## 🎯 Outcome
+### 🎯 Outcome
 
-- Understand how models learn from labeled data
+Understand how models learn from labeled data.
+
+📖 [Open Chapter 1 →](./Chapter%201%20-%20Supervised%20Learning/chap1.md)
 
 ---
 
-# 🧩 PHASE 2: Unsupervised Learning (Week 2)
+## 🧩 Phase 2: Unsupervised Learning (Week 2)
 
-## 🔑 Concepts
+### 🔑 Concepts
 
 - No labels → pattern finding
-- Clustering
-- Association rules
+- Clustering, Association Rules
+- Dimensionality Reduction
 
-## 📚 Topics
+### 📚 Key Algorithms
 
-- K-Means
-- Elbow Method
-- Apriori Algorithm
+| Algorithm | Type | Use Case |
+|-----------|------|---------|
+| K-Means | Clustering | Customer segmentation |
+| Apriori | Association | Market basket analysis |
+| PCA | Dimensionality Reduction | Feature compression |
 
-## 🔁 Learning Flow
+### 🛠 Practice Projects
 
-![Clustering](https://source.unsplash.com/featured/?data,cluster)
+- 👥 Customer segmentation
+- 🛒 Market basket analysis
 
-## 🛠 Practice
+### 🎯 Outcome
 
-- Customer segmentation
-- Market basket analysis
+Ability to find hidden patterns in unlabeled data.
 
-## 🎯 Outcome
-
-- Ability to find hidden patterns in data
-
----
-
-# 🎯 Goal
-
-Build strong fundamentals in Machine Learning + practical implementation skills + project portfolio.
-
-Duration: 4–6 Weeks (intensive mode)  
-Daily Time: 6–10 hrs (adjustable)
+📖 [Open Chapter 2 →](./Chapter%202%20-%20Unsupervised%20Learning/chap2.md)
 
 ---
 
-# 🧭 PHASE 0: Foundation Setup (Day 1–2)
+## 🤖 Phase 3: Neural Networks & Deep Learning (Week 3)
 
-## 🧰 What You Need
+### 🔑 Concepts
 
-- Python basics (loops, functions, lists)
-- Libraries: NumPy, Pandas, Matplotlib
-
-## 📌 Tasks
-
-- Install Python + Jupyter Notebook
-- Learn basic data handling
-- Practice simple plots
-
-## 📊 Learning Flow
-
-![Python Workflow](https://source.unsplash.com/featured/?python,data)
-
-👉 Outcome:
-
-- You can load, clean, and visualize data
-
----
-
-# 🧠 PHASE 1: Supervised Learning (Week 1)
-
-## 🔑 Concepts
-
-- What is ML?
-- Supervised Learning
-- Classification vs Regression
-
-## 📚 Topics
-
-- Linear Regression
-- Logistic Regression
-- Evaluation metrics
-
-## 🔁 Learning Flow
-
-![Supervised Learning](https://source.unsplash.com/featured/?machinelearning,ai)
-
-## 🛠 Practice
-
-- Predict house prices
-- Spam email classifier
-
-## 🎯 Outcome
-
-- Understand how models learn from labeled data
-
----
-
-# 🧩 PHASE 2: Unsupervised Learning (Week 2)
-
-## 🔑 Concepts
-
-- No labels → pattern finding
-- Clustering
-- Association rules
-
-## 📚 Topics
-
-- K-Means
-- Elbow Method
-- Apriori Algorithm
-
-## 🔁 Learning Flow
-
-![Clustering](https://source.unsplash.com/featured/?data,cluster)
-
-## 🛠 Practice
-
-- Customer segmentation
-- Market basket analysis
-
-## 🎯 Outcome
-
-- Ability to find hidden patterns in data
-
----
-
-# 🤖 PHASE 3: Neural Networks & Deep Learning (Week 3)
-
-## 🔑 Concepts
-
-- Artificial Neuron
+- Artificial Neuron, Weights, Bias
 - Activation Functions
-- Deep Learning
+- Forward & Backpropagation
 
-## 📚 Topics
+### 📚 Key Algorithms
 
-- Perceptron
-- Feedforward Networks
-- Backpropagation
+| Algorithm | Use Case |
+|-----------|---------|
+| Perceptron | Simple binary classification |
+| Feedforward Neural Network | General classification/regression |
+| Autoencoder | Data compression |
 
-## 🔁 Learning Flow
+### 🛠 Practice Projects
 
-![Neural Network](https://source.unsplash.com/featured/?neuralnetwork,ai)
+- 🔢 Digit recognition (MNIST)
+- 🤖 Build a simple neural network from scratch
 
-## 🛠 Practice
+### 🎯 Outcome
 
-- Build simple neural network (Python)
-- Digit recognition (basic)
+Understand how AI models mimic the brain.
 
-## 🎯 Outcome
-
-- Understand how AI models mimic the brain
+📖 [Open Chapter 3 →](./Chapter%203%20-%20Neural%20Networks/chap3.md)
 
 ---
 
-# 🤝 PHASE 4: Advanced Learning Techniques (Week 4)
+## 🤝 Phase 4: Advanced Learning Techniques (Week 4)
 
-## 🔑 Concepts
+### 🔑 Concepts
 
-- Ensemble Learning
+- Ensemble Learning (Bagging, Boosting)
 - Active Learning
-- Instance-Based Learning
+- Instance-Based Learning (KNN)
 
-## 📚 Topics
+### 📚 Key Algorithms
 
-- Bagging vs Boosting
-- KNN (Instance-based)
+| Algorithm | Type | Use Case |
+|-----------|------|---------|
+| Random Forest | Bagging | General classification |
+| AdaBoost / XGBoost | Boosting | High-accuracy tasks |
+| KNN | Instance-Based | Recommendation, classification |
 
-## 🔁 Learning Flow
+### 🛠 Practice Projects
 
-![Ensemble](https://source.unsplash.com/featured/?ai,algorithm)
+- 🌲 Implement Random Forest
+- 📈 Compare Bagging vs Boosting accuracy
 
-## 🛠 Practice
+### 🎯 Outcome
 
-- Implement Random Forest
-- Compare models
+Improve model performance and accuracy.
 
-## 🎯 Outcome
-
-- Improve model performance & accuracy
+📖 [Open Chapter 4 →](./Chapter%204%20-%20Advanced%20Learning/Infographics/chap4.md)
 
 ---
 
-# 🎮 PHASE 5: Reinforcement Learning (Week 5)
+## 🎮 Phase 5: Reinforcement Learning (Week 5)
 
-## 🔑 Concepts
+### 🔑 Concepts
 
-- Agent, Environment
-- Rewards & Punishment
+- Agent, Environment, State, Action, Reward
 - Exploration vs Exploitation
+- Q-Learning, Policy
 
-## 🔁 Learning Flow
+### 🛠 Practice Projects
 
-![Reinforcement Learning](https://source.unsplash.com/featured/?robot,game)
+- 🧩 Maze-solving agent
+- 🎮 Simple game AI with Q-learning
 
-## 🛠 Practice
+### 🎯 Outcome
 
-- Simple game AI (grid/maze)
-- Q-learning basics
+Understand how agents learn decision-making through interaction.
 
-## 🎯 Outcome
-
-- Understand decision-making AI
-
----
-
-# 🧪 PHASE 6: Projects + Portfolio (Week 6)
-
-## 💡 Must-Build Projects
-
-- Spam Detection System
-- House Price Predictor
-- Customer Segmentation Tool
-- Neural Network Demo
-- RL Game Agent
-
-## 🔁 Project Flow
-
-![ML Pipeline](https://source.unsplash.com/featured/?technology,workflow)
-
-## 🎯 Outcome
-
-- Strong GitHub portfolio
-- Real-world ML understanding
+📖 [Open Chapter 5 →](./Chapter%205%20-%20Reinforcement%20Learning/Infographics/chap5.md)
 
 ---
 
-# ⚡ DAILY STUDY STRUCTURE
+## 🚀 Phase 6: Projects + Portfolio (Week 6)
 
-## 🕒 Example Routine (8–10 hrs)
+### 💡 Must-Build Projects
 
-- 2 hrs → Concept learning
-- 3 hrs → Coding/practice
-- 2 hrs → Projects
-- 1 hr → Revision
-- 1 hr → Notes + Infographics
+| Project | Chapter | Tech |
+|---------|---------|------|
+| 📧 Spam Detection System | Chapter 1 | Logistic Regression |
+| 🏠 House Price Predictor | Chapter 1 | Linear Regression |
+| 👥 Customer Segmentation Tool | Chapter 2 | K-Means |
+| 🔢 Neural Network Demo | Chapter 3 | TensorFlow / PyTorch |
+| 🎮 RL Game Agent | Chapter 5 | Q-Learning |
 
----
+### 🎯 Outcome
 
-# 🧠 FINAL ROADMAP SUMMARY
-
-![Roadmap](https://source.unsplash.com/featured/?roadmap,technology)
-
----
-
-# 🚀 END RESULT
-
-After completing this roadmap, you will:
-✔ Understand all major ML concepts  
-✔ Build real-world projects  
-✔ Be ready for internships / hackathons  
-✔ Have a strong portfolio
+- ✅ Strong GitHub portfolio
+- ✅ Real-world ML understanding
+- ✅ Ready for internships / hackathons
 
 ---
 
-# 🔥 PRO TIP
+## ⚡ Daily Study Structure
 
-👉 Use NotebookLM + these topics  
-👉 Generate videos + infographics  
-👉 Learn visually = faster retention
-
----
-
-# 💣 NEXT STEP
-
-Convert this into:
-
-- 📽 Video course (NotebookLM)
-- 🎤 Voiceover lessons
-- 📊 PPT slides
-- 🧪 Real project system# 🎯 Goal
-  Build strong fundamentals in Machine Learning + practical implementation skills + project portfolio.
-
-Duration: 4–6 Weeks (intensive mode)  
-Daily Time: 6–10 hrs (adjustable)
+| Time Block | Activity |
+|-----------|---------|
+| 2 hrs | Concept learning (read infographic, watch lecture) |
+| 3 hrs | Coding & practice |
+| 2 hrs | Project work |
+| 1 hr | Revision & flashcards |
+| 1 hr | Notes & diagrams |
 
 ---
 
-# 🧭 PHASE 0: Foundation Setup (Day 1–2)
+## 🔥 Pro Tips
 
-## 🧰 What You Need
-
-- Python basics (loops, functions, lists)
-- Libraries: NumPy, Pandas, Matplotlib
-
-## 📌 Tasks
-
-- Install Python + Jupyter Notebook
-- Learn basic data handling
-- Practice simple plots
-
-## 📊 Learning Flow
-
-![Python Workflow](https://source.unsplash.com/featured/?python,data)
-
-👉 Outcome:
-
-- You can load, clean, and visualize data
+> [!TIP]
+> - Use **NotebookLM** to generate summaries from these notes
+> - Learn visually first → code second → teach it to solidify
+> - Track your progress by checking off each phase
 
 ---
 
-# 🧠 PHASE 1: Supervised Learning (Week 1)
-
-## 🔑 Concepts
-
-- What is ML?
-- Supervised Learning
-- Classification vs Regression
-
-## 📚 Topics
-
-- Linear Regression
-- Logistic Regression
-- Evaluation metrics
-
-## 🔁 Learning Flow
-
-![Supervised Learning](https://source.unsplash.com/featured/?machinelearning,ai)
-
-## 🛠 Practice
-
-- Predict house prices
-- Spam email classifier
-
-## 🎯 Outcome
-
-- Understand how models learn from labeled data
-
----
-
-# 🧩 PHASE 2: Unsupervised Learning (Week 2)
-
-## 🔑 Concepts
-
-- No labels → pattern finding
-- Clustering
-- Association rules
-
-## 📚 Topics
-
-- K-Means
-- Elbow Method
-- Apriori Algorithm
-
-## 🔁 Learning Flow
-
-![Clustering](https://source.unsplash.com/featured/?data,cluster)
-
-## 🛠 Practice
-
-- Customer segmentation
-- Market basket analysis
-
-## 🎯 Outcome
-
-- Ability to find hidden patterns in data
-
----
-
-# 🤖 PHASE 3: Neural Networks & Deep Learning (Week 3)
-
-## 🔑 Concepts
-
-- Artificial Neuron
-- Activation Functions
-- Deep Learning
-
-## 📚 Topics
-
-- Perceptron
-- Feedforward Networks
-- Backpropagation
-
-## 🔁 Learning Flow
-
-![Neural Network](https://source.unsplash.com/featured/?neuralnetwork,ai)
-
-## 🛠 Practice
-
-- Build simple neural network (Python)
-- Digit recognition (basic)
-
-## 🎯 Outcome
-
-- Understand how AI models mimic the brain
-
----
-
-# 🤝 PHASE 4: Advanced Learning Techniques (Week 4)
-
-## 🔑 Concepts
-
-- Ensemble Learning
-- Active Learning
-- Instance-Based Learning
-
-## 📚 Topics
-
-- Bagging vs Boosting
-- KNN (Instance-based)
-
-## 🔁 Learning Flow
-
-![Ensemble](https://source.unsplash.com/featured/?ai,algorithm)
-
-## 🛠 Practice
-
-- Implement Random Forest
-- Compare models
-
-## 🎯 Outcome
-
-- Improve model performance & accuracy
-
----
-
-# 🎮 PHASE 5: Reinforcement Learning (Week 5)
-
-## 🔑 Concepts
-
-- Agent, Environment
-- Rewards & Punishment
-- Exploration vs Exploitation
-
-## 🔁 Learning Flow
-
-![Reinforcement Learning](https://source.unsplash.com/featured/?robot,game)
-
-## 🛠 Practice
-
-- Simple game AI (grid/maze)
-- Q-learning basics
-
-## 🎯 Outcome
-
-- Understand decision-making AI
-
----
-
-# 🧪 PHASE 6: Projects + Portfolio (Week 6)
-
-## 💡 Must-Build Projects
-
-- Spam Detection System
-- House Price Predictor
-- Customer Segmentation Tool
-- Neural Network Demo
-- RL Game Agent
-
-## 🔁 Project Flow
-
-![ML Pipeline](https://source.unsplash.com/featured/?technology,workflow)
-
-## 🎯 Outcome
-
-- Strong GitHub portfolio
-- Real-world ML understanding
-
----
-
-# ⚡ DAILY STUDY STRUCTURE
-
-## 🕒 Example Routine (8–10 hrs)
-
-- 2 hrs → Concept learning
-- 3 hrs → Coding/practice
-- 2 hrs → Projects
-- 1 hr → Revision
-- 1 hr → Notes + Infographics
-
----
-
-# 🧠 FINAL ROADMAP SUMMARY
-
-![Roadmap](https://source.unsplash.com/featured/?roadmap,technology)
-
----
-
-# 🚀 END RESULT
-
-After completing this roadmap, you will:
-✔ Understand all major ML concepts  
-✔ Build real-world projects  
-✔ Be ready for internships / hackathons  
-✔ Have a strong portfolio
-
----
-
-# 🔥 PRO TIP
-
-👉 Use NotebookLM + these topics  
-👉 Generate videos + infographics  
-👉 Learn visually = faster retention
-
----
-
-# 💣 NEXT STEP
-
-Convert this into:
-
-- 📽 Video course (NotebookLM)
-- 🎤 Voiceover lessons
-- 📊 PPT slides
-- 🧪 Real project system# 🎯 Goal
-  Build strong fundamentals in Machine Learning + practical implementation skills + project portfolio.
-
-Duration: 4–6 Weeks (intensive mode)  
-Daily Time: 6–10 hrs (adjustable)
-
----
-
-# 🧭 PHASE 0: Foundation Setup (Day 1–2)
-
-## 🧰 What You Need
-
-- Python basics (loops, functions, lists)
-- Libraries: NumPy, Pandas, Matplotlib
-
-## 📌 Tasks
-
-- Install Python + Jupyter Notebook
-- Learn basic data handling
-- Practice simple plots
-
-## 📊 Learning Flow
-
-![Python Workflow](https://source.unsplash.com/featured/?python,data)
-
-👉 Outcome:
-
-- You can load, clean, and visualize data
-
----
-
-# 🧠 PHASE 1: Supervised Learning (Week 1)
-
-## 🔑 Concepts
-
-- What is ML?
-- Supervised Learning
-- Classification vs Regression
-
-## 📚 Topics
-
-- Linear Regression
-- Logistic Regression
-- Evaluation metrics
-
-## 🔁 Learning Flow
-
-![Supervised Learning](https://source.unsplash.com/featured/?machinelearning,ai)
-
-## 🛠 Practice
-
-- Predict house prices
-- Spam email classifier
-
-## 🎯 Outcome
-
-- Understand how models learn from labeled data
-
----
-
-# 🧩 PHASE 2: Unsupervised Learning (Week 2)
-
-## 🔑 Concepts
-
-- No labels → pattern finding
-- Clustering
-- Association rules
-
-## 📚 Topics
-
-- K-Means
-- Elbow Method
-- Apriori Algorithm
-
-## 🔁 Learning Flow
-
-![Clustering](https://source.unsplash.com/featured/?data,cluster)
-
-## 🛠 Practice
-
-- Customer segmentation
-- Market basket analysis
-
-## 🎯 Outcome
-
-- Ability to find hidden patterns in data
-
----
-
-# 🤖 PHASE 3: Neural Networks & Deep Learning (Week 3)
-
-## 🔑 Concepts
-
-- Artificial Neuron
-- Activation Functions
-- Deep Learning
-
-## 📚 Topics
-
-- Perceptron
-- Feedforward Networks
-- Backpropagation
-
-## 🔁 Learning Flow
-
-![Neural Network](https://source.unsplash.com/featured/?neuralnetwork,ai)
-
-## 🛠 Practice
-
-- Build simple neural network (Python)
-- Digit recognition (basic)
-
-## 🎯 Outcome
-
-- Understand how AI models mimic the brain
-
----
-
-# 🤝 PHASE 4: Advanced Learning Techniques (Week 4)
-
-## 🔑 Concepts
-
-- Ensemble Learning
-- Active Learning
-- Instance-Based Learning
-
-## 📚 Topics
-
-- Bagging vs Boosting
-- KNN (Instance-based)
-
-## 🔁 Learning Flow
-
-![Ensemble](https://source.unsplash.com/featured/?ai,algorithm)
-
-## 🛠 Practice
-
-- Implement Random Forest
-- Compare models
-
-## 🎯 Outcome
-
-- Improve model performance & accuracy
-
----
-
-# 🎮 PHASE 5: Reinforcement Learning (Week 5)
-
-## 🔑 Concepts
-
-- Agent, Environment
-- Rewards & Punishment
-- Exploration vs Exploitation
-
-## 🔁 Learning Flow
-
-![Reinforcement Learning](https://source.unsplash.com/featured/?robot,game)
-
-## 🛠 Practice
-
-- Simple game AI (grid/maze)
-- Q-learning basics
-
-## 🎯 Outcome
-
-- Understand decision-making AI
-
----
-
-# 🧪 PHASE 6: Projects + Portfolio (Week 6)
-
-## 💡 Must-Build Projects
-
-- Spam Detection System
-- House Price Predictor
-- Customer Segmentation Tool
-- Neural Network Demo
-- RL Game Agent
-
-## 🔁 Project Flow
-
-![ML Pipeline](https://source.unsplash.com/featured/?technology,workflow)
-
-## 🎯 Outcome
-
-- Strong GitHub portfolio
-- Real-world ML understanding
-
----
-
-# ⚡ DAILY STUDY STRUCTURE
-
-## 🕒 Example Routine (8–10 hrs)
-
-- 2 hrs → Concept learning
-- 3 hrs → Coding/practice
-- 2 hrs → Projects
-- 1 hr → Revision
-- 1 hr → Notes + Infographics
-
----
-
-# 🧠 FINAL ROADMAP SUMMARY
-
-![Roadmap](https://source.unsplash.com/featured/?roadmap,technology)
-
----
-
-# 🚀 END RESULT
-
-After completing this roadmap, you will:
-✔ Understand all major ML concepts  
-✔ Build real-world projects  
-✔ Be ready for internships / hackathons  
-✔ Have a strong portfolio
-
----
-
-# 🔥 PRO TIP
-
-👉 Use NotebookLM + these topics  
-👉 Generate videos + infographics  
-👉 Learn visually = faster retention
-
----
-
-# 💣 NEXT STEP
-
-Convert this into:
-
-- 📽 Video course (NotebookLM)
-- 🎤 Voiceover lessons
-- 📊 PPT slides
-- 🧪 Real project system
-
-# 🤖 PHASE 3: Neural Networks & Deep Learning (Week 3)
-
-## 🔑 Concepts
-
-- Artificial Neuron
-- Activation Functions
-- Deep Learning
-
-## 📚 Topics
-
-- Perceptron
-- Feedforward Networks
-- Backpropagation
-
-## 🔁 Learning Flow
-
-![Neural Network](https://source.unsplash.com/featured/?neuralnetwork,ai)
-
-## 🛠 Practice
-
-- Build simple neural network (Python)
-- Digit recognition (basic)
-
-## 🎯 Outcome
-
-- Understand how AI models mimic the brain
-
----
-
-# 🤝 PHASE 4: Advanced Learning Techniques (Week 4)
-
-## 🔑 Concepts
-
-- Ensemble Learning
-- Active Learning
-- Instance-Based Learning
-
-## 📚 Topics
-
-- Bagging vs Boosting
-- KNN (Instance-based)
-
-## 🔁 Learning Flow
-
-![Ensemble](https://source.unsplash.com/featured/?ai,algorithm)
-
-## 🛠 Practice
-
-- Implement Random Forest
-- Compare models
-
-## 🎯 Outcome
-
-- Improve model performance & accuracy
-
----
-
-# 🎮 PHASE 5: Reinforcement Learning (Week 5)
-
-## 🔑 Concepts
-
-- Agent, Environment
-- Rewards & Punishment
-- Exploration vs Exploitation
-
-## 🔁 Learning Flow
-
-![Reinforcement Learning](https://source.unsplash.com/featured/?robot,game)
-
-## 🛠 Practice
-
-- Simple game AI (grid/maze)
-- Q-learning basics
-
-## 🎯 Outcome
-
-- Understand decision-making AI
-
----
-
-# 🧪 PHASE 6: Projects + Portfolio (Week 6)
-
-## 💡 Must-Build Projects
-
-- Spam Detection System
-- House Price Predictor
-- Customer Segmentation Tool
-- Neural Network Demo
-- RL Game Agent
-
-## 🔁 Project Flow
-
-![ML Pipeline](https://source.unsplash.com/featured/?technology,workflow)
-
-## 🎯 Outcome
-
-- Strong GitHub portfolio
-- Real-world ML understanding
-
----
-
-# ⚡ DAILY STUDY STRUCTURE
-
-## 🕒 Example Routine (8–10 hrs)
-
-- 2 hrs → Concept learning
-- 3 hrs → Coding/practice
-- 2 hrs → Projects
-- 1 hr → Revision
-- 1 hr → Notes + Infographics
-
----
-
-# 🧠 FINAL ROADMAP SUMMARY
-
-![Roadmap](https://source.unsplash.com/featured/?roadmap,technology)
-
----
-
-# 🚀 END RESULT
-
-After completing this roadmap, you will:
-✔ Understand all major ML concepts  
-✔ Build real-world projects  
-✔ Be ready for internships / hackathons  
-✔ Have a strong portfolio
-
----
+## 📚 Recommended Resources
+
+| Resource | Link | Type |
+|----------|------|------|
+| Google ML Crash Course | [link](https://developers.google.com/machine-learning/crash-course) | Free Course |
+| Andrew Ng ML Specialization | [Coursera](https://www.coursera.org/specializations/machine-learning-introduction) | Course |
+| Kaggle Learn | [link](https://www.kaggle.com/learn) | Interactive |
+| StatQuest (YouTube) | [link](https://www.youtube.com/@statquest) | Videos |
+| Scikit-Learn Docs | [link](https://scikit-learn.org/stable/) | Reference |

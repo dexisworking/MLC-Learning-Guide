@@ -284,6 +284,50 @@ flowchart LR
 
 ---
 
+# 💻 Code Example
+
+### 🔹 Linear Regression (House Price Prediction)
+Linear regression models the relationship between a dependent variable and one or more independent variables.
+
+```python
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
+
+# 1. Prepare data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 2. Create and train model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# 3. Predict and Evaluate
+y_pred = model.predict(X_test)
+print("Mean Squared Error:", mean_squared_error(y_test, y_pred))
+```
+
+### 🔹 Logistic Regression (Binary Classification)
+Logistic regression is used to predict the probability of a target variable belonging to a particular class (0 or 1).
+
+```python
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+# 1. Initialize model
+model = LogisticRegression(solver="liblinear")
+
+# 2. Train model
+model.fit(X_train, y_train)
+
+# 3. Predict classes
+y_pred = model.predict(X_test)
+
+# 4. Check accuracy
+print("Accuracy:", accuracy_score(y_test, y_pred))
+```
+
+---
+
 # 💡 11. Practice Ideas
 
 | Project | Algorithm | Dataset |

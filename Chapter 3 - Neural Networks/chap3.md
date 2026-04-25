@@ -78,7 +78,7 @@ Activation functions determine **whether a neuron should fire** — they introdu
 |----------|---------|-------------|---------------|
 | Sigmoid | $\frac{1}{1+e^{-x}}$ | $(0, 1)$ | Binary classification output |
 | Tanh | $\frac{e^x - e^{-x}}{e^x + e^{-x}}$ | $(-1, 1)$ | Hidden layers (zero-centered) |
-| ReLU | $\max(0, x)$ | $[0, \infty)$ | Hidden layers (most common) |
+| ReLU | $\max(0, x)$ | `[0, \infty)` | Hidden layers (most common) |
 | Softmax | $\frac{e^{x_i}}{\sum e^{x_j}}$ | $(0, 1)$, sums to 1 | Multiclass output layer |
 
 ![Activation Functions](./Infographics/3.3%20Activation%20Functions.png)
@@ -329,6 +329,63 @@ Use cases: anomaly detection, data compression, denoising
 | **Epoch** | One full training pass through the dataset |
 | **Overfitting** | Network memorizes training data, fails on new data |
 | **Dropout** | Regularization — randomly disabling neurons during training |
+
+---
+
+# 💻 Code Example
+
+### 🔹 Single-Layer Perceptron
+Implementing a simple linear classifier using scikit-learn.
+
+```python
+from sklearn.linear_model import Perceptron
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# 1. Create model
+model = Perceptron(max_iter=1000, eta0=0.1)
+
+# 2. Train and Predict
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+```
+
+### 🔹 Basic Neural Network (MLP)
+A Multi-Layer Perceptron with two hidden layers using scikit-learn.
+
+```python
+from sklearn.neural_network import MLPClassifier
+
+# 1. Define architecture (10 neurons in layer 1, 5 in layer 2)
+model = MLPClassifier(hidden_layer_sizes=(10, 5), 
+                      activation='relu', 
+                      max_iter=500)
+
+# 2. Fit and Evaluate
+model.fit(X_train, y_train)
+print("Accuracy:", model.score(X_test, y_test))
+```
+
+### 🔹 Activation Functions (Manual Implementation)
+Common non-linear functions used in neurons to introduce complexity.
+
+```python
+import numpy as np
+
+# Sigmoid: Maps output to (0, 1)
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+# ReLU: Rectified Linear Unit
+def relu(x):
+    return np.maximum(0, x)
+
+# Tanh: Hyperbolic Tangent
+def tanh(x):
+    return np.tanh(x)
+```
 
 ---
 

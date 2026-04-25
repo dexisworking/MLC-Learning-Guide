@@ -80,7 +80,7 @@ $$
 $$
 
 Where:
-- $\gamma \in [0, 1]$ = **discount factor** (how much future rewards are valued)
+- $\gamma \in$ `[0, 1]` = **discount factor** (how much future rewards are valued)
 - $\gamma = 0$ → only care about immediate reward
 - $\gamma = 1$ → care equally about all future rewards
 
@@ -260,6 +260,68 @@ This simplifying assumption is called the **Markov Property** and is the foundat
 | Autonomous Vehicles | Self-driving decisions | Tesla, Waymo |
 | Healthcare | Drug dosage optimization | Sepsis treatment |
 | NLP | Fine-tuning LLMs | ChatGPT (RLHF) |
+
+---
+
+# 💻 Code Example
+
+### 🔹 Simple RL Agent Structure
+A basic template for a Q-learning agent with exploration and exploitation logic.
+
+```python
+import numpy as np
+
+class SimpleAgent:
+    def __init__(self, n_states, n_actions):
+        self.q_table = np.zeros((n_states, n_actions))
+        self.alpha = 0.1    # Learning Rate
+        self.gamma = 0.9    # Discount Factor
+        self.epsilon = 0.1  # Exploration Rate
+
+    def choose_action(self, state):
+        # ε-greedy policy
+        if np.random.rand() < self.epsilon:
+            return np.random.choice(len(self.q_table[state])) # Explore
+        else:
+            return np.argmax(self.q_table[state])             # Exploit
+
+    def update(self, state, action, reward, next_state):
+        # Bellman Equation Update
+        best_next = np.max(self.q_table[next_state])
+        self.q_table[state, action] += self.alpha * (
+            reward + self.gamma * best_next - self.q_table[state, action]
+        )
+```
+
+### 🔹 Q-Learning Training Loop
+The complete process of an agent interacting with an environment to learn optimal values.
+
+```python
+import gymnasium as gym
+
+def q_learning(env, episodes=2000):
+    # 1. Initialize Q-table
+    Q = np.zeros((env.observation_space.n, env.action_space.n))
+    
+    for ep in range(episodes):
+        state, _ = env.reset()
+        done = False
+        
+        while not done:
+            # 2. Choose action (ε-greedy)
+            action = np.argmax(Q[state]) if np.random.rand() > 0.1 else env.action_space.sample()
+            
+            # 3. Take action
+            next_state, reward, terminated, truncated, _ = env.step(action)
+            done = terminated or truncated
+            
+            # 4. Update Q-value
+            best_next = np.max(Q[next_state])
+            Q[state, action] += 0.1 * (reward + 0.9 * best_next - Q[state, action])
+            
+            state = next_state
+    return Q
+```
 
 ---
 

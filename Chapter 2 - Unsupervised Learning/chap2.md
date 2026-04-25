@@ -290,6 +290,63 @@ $$
 
 ---
 
+# 💻 Code Example
+
+### 🔹 K-Means Clustering
+Grouping data points into K clusters based on similarity.
+
+```python
+from sklearn.cluster import KMeans
+
+# 1. Initialize KMeans with 3 clusters
+kmeans = KMeans(n_clusters=3, random_state=42)
+
+# 2. Fit model and predict clusters
+labels = kmeans.fit_predict(X)
+
+# 3. Access cluster centers
+centers = kmeans.cluster_centers_
+print("Cluster Centers:\n", centers)
+```
+
+### 🔹 Elbow Method (Finding Optimal K)
+Plotting the Within-Cluster Sum of Squares (WCSS) to find the "elbow" point.
+
+```python
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+wcss = []
+for k in range(1, 11):
+    model = KMeans(n_clusters=k, random_state=42)
+    model.fit(X)
+    wcss.append(model.inertia_)
+
+# Plot the results
+plt.plot(range(1, 11), wcss, marker='o')
+plt.title('Elbow Method')
+plt.xlabel('Number of Clusters (K)')
+plt.ylabel('WCSS')
+plt.show()
+```
+
+### 🔹 Association Rules (Apriori)
+Finding frequent itemsets and rules using the mlxtend library.
+
+```python
+from mlxtend.frequent_patterns import apriori, association_rules
+
+# 1. Find frequent itemsets
+frequent_itemsets = apriori(df, min_support=0.5, use_colnames=True)
+
+# 2. Generate association rules
+rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.7)
+
+print(rules[['antecedents', 'consequents', 'support', 'confidence', 'lift']])
+```
+
+---
+
 # 💡 14. Practice Ideas
 
 | Project | Algorithm | Dataset |

@@ -273,6 +273,62 @@ flowchart LR
 
 ---
 
+# 💻 Code Example
+
+### 🔹 Bagging (Random Forest)
+An ensemble method that trains multiple decision trees on different data subsets and averages their predictions.
+
+```python
+from sklearn.ensemble import BaggingClassifier
+from sklearn.tree import DecisionTreeClassifier
+
+# 1. Initialize Bagging with 20 Decision Trees
+model = BaggingClassifier(
+    estimator=DecisionTreeClassifier(),
+    n_estimators=20,
+    bootstrap=True,
+    random_state=0
+)
+
+# 2. Train and Evaluate
+model.fit(X_train, y_train)
+print("Bagging Accuracy:", model.score(X_test, y_test))
+```
+
+### 🔹 Boosting (AdaBoost)
+An ensemble method where each subsequent model focuses on correcting the errors of the previous one.
+
+```python
+from sklearn.ensemble import AdaBoostClassifier
+
+# 1. Initialize AdaBoost with 50 weak learners (stumps)
+model = AdaBoostClassifier(
+    n_estimators=50,
+    learning_rate=1.0,
+    random_state=0
+)
+
+# 2. Fit and Predict
+model.fit(X_train, y_train)
+print("AdaBoost Accuracy:", model.score(X_test, y_test))
+```
+
+### 🔹 K-Nearest Neighbors (KNN)
+An instance-based learner that predicts based on the majority label of the nearest $K$ data points.
+
+```python
+from sklearn.neighbors import KNeighborsClassifier
+
+# 1. Create KNN model (K=5)
+model = KNeighborsClassifier(n_neighbors=5)
+
+# 2. Train and Score
+model.fit(X_train, y_train)
+print("KNN Accuracy:", model.score(X_test, y_test))
+```
+
+---
+
 # 💡 12. Practice Ideas
 
 | Project | Algorithm | Dataset |

@@ -237,6 +237,10 @@ flowchart LR
     B --> D["✅ Good Generalization"]
 ```
 
+> [!NOTE]
+> **🔍 Deep Dive: Bias vs Variance Tradeoff**
+> ![Bias vs Variance Tradeoff](../Bonus%20Infographics/Bonus%206%20Bias%20vs%20Variance%20Tradeoff.png)
+
 ---
 
 # 🧪 10. Real-World Applications

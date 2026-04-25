@@ -32,8 +32,10 @@
 | 📊 Chapter 1 | [Supervised Learning](./Chapter%201%20-%20Supervised%20Learning/chap1.md)                     | `chap1.md` | 🟢 Beginner     |
 | 🧩 Chapter 2 | [Unsupervised Learning](./Chapter%202%20-%20Unsupervised%20Learning/chap2.md)                 | `chap2.md` | 🟡 Intermediate |
 | 🤖 Chapter 3 | [Neural Networks & Deep Learning](./Chapter%203%20-%20Neural%20Networks/chap3.md)             | `chap3.md` | 🟡 Intermediate |
-| 🤝 Chapter 4 | [Advanced Learning Techniques](./Chapter%204%20-%20Advanced%20Learning/Infographics/chap4.md) | `chap4.md` | 🔴 Advanced     |
-| 🎮 Chapter 5 | [Reinforcement Learning](./Chapter%205%20-%20Reinforcement%20Learning/Infographics/chap5.md)  | `chap5.md` | 🔴 Advanced     |
+| 🤝 Chapter 4 | [Advanced Learning Techniques](./Chapter%204%20-%20Advanced%20Learning/chap4.md)              | `chap4.md` | 🔴 Advanced     |
+| 🎮 Chapter 5 | [Reinforcement Learning](./Chapter%205%20-%20Reinforcement%20Learning/chap5.md)               | `chap5.md` | 🔴 Advanced     |
+
+![ML Universe Map](./Bonus%20Infographics/Bonus%204%20ML%20Universe%20Map.png)
 
 ---
 

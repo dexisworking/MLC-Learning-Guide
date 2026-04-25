@@ -187,6 +187,10 @@ $$
 
 ![Association Rules](./Infographics/2.4%20Association%20Rules.png)
 
+> [!NOTE]
+> **🔍 Deep Dive: Association Rules Network Map**
+> ![Association Rules Network Map](../Bonus%20Infographics/Bonus%2010%20Association%20Rules%20Network%20Map.png)
+
 ---
 
 # 🧠 9. Apriori Algorithm

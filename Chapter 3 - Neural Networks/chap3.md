@@ -170,6 +170,10 @@ When a network has **multiple hidden layers**, it is called a **Deep Neural Netw
 
 ![Deep Learning Architecture](./Infographics/3.4%20Deep%20Learning%20Architecture.png)
 
+> [!NOTE]
+> **🔍 Deep Dive: Neural Network Inside View**
+> ![Neural Network Inside View](../Bonus%20Infographics/Bonus%207%20Neural%20Network%20Inside%20View.png)
+
 ---
 
 # 🔄 7. Forward Propagation

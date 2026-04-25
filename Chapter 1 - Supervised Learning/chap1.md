@@ -50,6 +50,10 @@ flowchart TD
 
 ![Combined Flow](./Infographics/1.4%20Combined%20Flow.png)
 
+> [!NOTE]
+> **🔍 Deep Dive: The End-to-End ML Pipeline**
+> ![End-to-End ML Pipeline](../Bonus%20Infographics/Bonus%205%20End-to-End%20ML%20Pipeline.png)
+
 ---
 
 # 🎯 3. Core Idea
@@ -90,6 +94,10 @@ Y \in \{0, 1\} \quad \text{(binary)} \qquad \text{or} \qquad Y \in \{C_1, C_2, \
 $$
 
 ![Classification](./Infographics/1.2%20Classification.png)
+
+> [!NOTE]
+> **🔍 Deep Dive: Classification Decision Boundary**
+> ![Classification Decision Boundary](../Bonus%20Infographics/Bonus%208%20Classification%20Decision%20Boundary.png)
 
 ---
 
@@ -160,6 +168,10 @@ Minimize the **Mean Squared Error (MSE)**:
 $$
 \text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
 $$
+
+> [!NOTE]
+> **🔍 Deep Dive: The Gradient Descent Journey**
+> ![Gradient Descent Journey](../Bonus%20Infographics/Bonus%209%20Gradient%20Descent%20Journey.png)
 
 ---
 

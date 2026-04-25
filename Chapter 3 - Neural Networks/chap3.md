@@ -2,7 +2,7 @@
 
 > "Neural Networks are machines inspired by how we think."
 
-📍 **Navigation:** [🏠 Home](../readme.md) | [← Chapter 2](../Chapter%202%20-%20Unsupervised%20Learning/chap2.md) | **Chapter 3** | [Chapter 4: Advanced Learning →](../Chapter%204%20-%20Advanced%20Learning/Infographics/chap4.md)
+📍 **Navigation:** [🏠 Home](../readme.md) | [← Chapter 2](../Chapter%202%20-%20Unsupervised%20Learning/chap2.md) | **Chapter 3** | [Chapter 4: Advanced Learning →](../Chapter%204%20-%20Advanced%20Learning/chap4.md)
 
 ---
 
@@ -37,6 +37,8 @@ Each neuron processes information and passes it forward to the next layer.
 | Signal | Electrical impulse | Numerical value |
 | Learning | Synaptic change | Weight update |
 
+![Biological vs Artificial Neuron](./Infographics/3.1%20Biological%20vs%20Artificial%20Neuron.png)
+
 ---
 
 # ⚙️ 3. Artificial Neuron — The Math
@@ -62,6 +64,8 @@ $$
 y = f(z)
 $$
 
+![Artificial Neuron Working](./Infographics/3.2%20Artificial%20Neuron%20Working.png)
+
 ---
 
 # 🔥 4. Activation Functions
@@ -76,6 +80,8 @@ Activation functions determine **whether a neuron should fire** — they introdu
 | Tanh | $\frac{e^x - e^{-x}}{e^x + e^{-x}}$ | $(-1, 1)$ | Hidden layers (zero-centered) |
 | ReLU | $\max(0, x)$ | $[0, \infty)$ | Hidden layers (most common) |
 | Softmax | $\frac{e^{x_i}}{\sum e^{x_j}}$ | $(0, 1)$, sums to 1 | Multiclass output layer |
+
+![Activation Functions](./Infographics/3.3%20Activation%20Functions.png)
 
 ---
 
@@ -161,6 +167,8 @@ When a network has **multiple hidden layers**, it is called a **Deep Neural Netw
 
 - Each layer learns increasingly **abstract representations**
 - Layer 1 → edges; Layer 2 → shapes; Layer 3 → objects (in image tasks)
+
+![Deep Learning Architecture](./Infographics/3.4%20Deep%20Learning%20Architecture.png)
 
 ---
 
@@ -260,6 +268,14 @@ $$
 
 Use cases: anomaly detection, data compression, denoising
 
+![Autoencoder](./Infographics/3.5%20Autoencoder.png)
+
+> [!NOTE]
+> **🔍 Deep Dive: Autoencoders & Data Compression**
+> ![Bonus 3 Autoencoder + Compression](../Bonus%20Infographics/Bonus%203%20Autoencoder%20+%20Compression.png)
+
+---
+
 ## 🔹 CNN (Convolutional Neural Network)
 
 - Specialized for **image data**
@@ -353,4 +369,4 @@ Master forward propagation, backpropagation, and gradient descent — and you un
 
 ---
 
-📍 **Navigation:** [🏠 Home](../readme.md) | [← Chapter 2](../Chapter%202%20-%20Unsupervised%20Learning/chap2.md) | **Chapter 3** | [Chapter 4: Advanced Learning →](../Chapter%204%20-%20Advanced%20Learning/Infographics/chap4.md)
+📍 **Navigation:** [🏠 Home](../readme.md) | [← Chapter 2](../Chapter%202%20-%20Unsupervised%20Learning/chap2.md) | **Chapter 3** | [Chapter 4: Advanced Learning →](../Chapter%204%20-%20Advanced%20Learning/chap4.md)

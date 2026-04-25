@@ -26,6 +26,8 @@ $$
 \text{Given } X \Rightarrow \text{Find patterns / structure}
 $$
 
+![Unsupervised Learning Overview](./Infographics/2.1%20Unsupervised%20Learning%20Overview.png)
+
 ---
 
 # 🔁 2. How It Works — The Discovery Flow
@@ -122,6 +124,12 @@ Used to find the **optimal number of clusters** $K$.
 > [!NOTE]
 > Beyond the elbow, adding more clusters gives diminishing returns. Use domain knowledge to confirm the final choice.
 
+![Clustering (K-Means + Elbow)](./Infographics/2.2%20Clustering%20(K-Means%20+%20Elbow).png)
+
+> [!NOTE]
+> **🔍 Deep Dive: WCSS & The Elbow**
+> ![Bonus 1 Elbow + WCSS](../Bonus%20Infographics/Bonus%201%20Elbow%20+%20WCSS.png)
+
 ---
 
 # 🔄 7. K-Means vs K-Medoids
@@ -132,6 +140,8 @@ Used to find the **optimal number of clusters** $K$.
 | Sensitivity | Sensitive to outliers | More robust to outliers |
 | Speed | Faster | Slower |
 | Use Case | Clean, numeric data | Data with noise/outliers |
+
+![K-Means vs K-Medoids](./Infographics/2.3%20K-Means%20vs%20K-Medoids.png)
 
 ---
 
@@ -175,6 +185,8 @@ $$
 | Lift = 1 | No association |
 | Lift < 1 | Negative association |
 
+![Association Rules](./Infographics/2.4%20Association%20Rules.png)
+
 ---
 
 # 🧠 9. Apriori Algorithm
@@ -184,6 +196,10 @@ $$
 > "If an itemset is frequent, all its subsets must also be frequent."
 
 This **anti-monotone property** allows pruning large portions of the search space.
+
+> [!NOTE]
+> **🔍 Deep Dive: The Apriori Principle**
+> ![Bonus 2 Apriori Principle](../Bonus%20Infographics/Bonus%202%20Apriori%20Principle.png)
 
 ## 🔁 Steps
 
@@ -214,6 +230,8 @@ Uses a **vertical data format** — stores a list of Transaction IDs (TIDs) per 
 | Approach | Breadth-first | Depth-first |
 | Memory Usage | Lower | Higher |
 | Best For | Sparse data | Dense data |
+
+![ECLAT Algorithm](./Infographics/2.5%20ECLAT%20Algorithm.png)
 
 ---
 

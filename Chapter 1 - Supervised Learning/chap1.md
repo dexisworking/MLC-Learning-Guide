@@ -30,6 +30,8 @@ $$
 
 So that the model can **predict outputs** for new, unseen inputs.
 
+![Supervised Learning Overview](./Infographics/1.1%20Supervised%20Learning%20Overview.png)
+
 ---
 
 # 🔁 2. How Learning Happens — The Training Loop
@@ -45,6 +47,8 @@ flowchart TD
     G --> C
     F -- Yes --> H["✅ Model Ready for Deployment"]
 ```
+
+![Combined Flow](./Infographics/1.4%20Combined%20Flow.png)
 
 ---
 
@@ -85,6 +89,8 @@ $$
 Y \in \{0, 1\} \quad \text{(binary)} \qquad \text{or} \qquad Y \in \{C_1, C_2, \ldots, C_k\} \quad \text{(multiclass)}
 $$
 
+![Classification](./Infographics/1.2%20Classification.png)
+
 ---
 
 ## 📈 4.2 Regression
@@ -106,6 +112,8 @@ Continuous real-valued output:
 $$
 Y \in \mathbb{R}
 $$
+
+![Regression](./Infographics/1.3%20Regression.png)
 
 ---
 

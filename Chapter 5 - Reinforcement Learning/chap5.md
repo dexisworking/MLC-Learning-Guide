@@ -2,7 +2,7 @@
 
 > "Learning by doing — and improving with rewards."
 
-📍 **Navigation:** [🏠 Home](../../readme.md) | [← Chapter 4](../../Chapter%204%20-%20Advanced%20Learning/Infographics/chap4.md) | **Chapter 5**
+📍 **Navigation:** [🏠 Home](../readme.md) | [← Chapter 4](../Chapter%204%20-%20Advanced%20Learning/chap4.md) | **Chapter 5**
 
 ---
 
@@ -26,6 +26,8 @@ Reinforcement Learning (RL) is a type of Machine Learning where an **agent learn
 $$
 \text{Agent} + \text{Environment} \rightarrow \text{Experience} \rightarrow \text{Learning}
 $$
+
+![RL Overview](./Infographics/5.1%20RL%20Overview.png)
 
 ---
 
@@ -65,6 +67,8 @@ $$
 4. Agent updates its knowledge
 5. Repeat until the episode ends
 
+![RL Loop](./Infographics/5.3%20RL%20Loop.png)
+
 ---
 
 # 🧠 4. Goal of Reinforcement Learning
@@ -101,6 +105,8 @@ Where:
 
 > [!TIP]
 > Start with high ε (explore a lot early), then decay it over time as the agent gets smarter. This is called **ε-decay**.
+
+![Exploration vs Exploitation](./Infographics/5.2%20Exploration%20vs%20Exploitation.png)
 
 ---
 
@@ -214,6 +220,8 @@ This simplifying assumption is called the **Markov Property** and is the foundat
 
 > [!NOTE]
 > Most RL problems are formulated as **Markov Decision Processes (MDPs)** — a mathematical framework with states, actions, transition probabilities, and rewards.
+
+![Markov Property](./Infographics/5.4%20Markov%20Property.png)
 
 ---
 
@@ -334,4 +342,4 @@ Master this, and you unlock true AI behavior: agents that learn, adapt, and impr
 
 ---
 
-📍 **Navigation:** [🏠 Home](../../readme.md) | [← Chapter 4](../../Chapter%204%20-%20Advanced%20Learning/Infographics/chap4.md) | **Chapter 5**
+📍 **Navigation:** [🏠 Home](../readme.md) | [← Chapter 4](../Chapter%204%20-%20Advanced%20Learning/chap4.md) | **Chapter 5**

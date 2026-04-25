@@ -2,7 +2,7 @@
 
 > "One model is good. Many models working together are powerful."
 
-📍 **Navigation:** [🏠 Home](../../readme.md) | [← Chapter 3](../../Chapter%203%20-%20Neural%20Networks/chap3.md) | **Chapter 4** | [Chapter 5: Reinforcement Learning →](../../Chapter%205%20-%20Reinforcement%20Learning/Infographics/chap5.md)
+📍 **Navigation:** [🏠 Home](../readme.md) | [← Chapter 3](../Chapter%203%20-%20Neural%20Networks/chap3.md) | **Chapter 4** | [Chapter 5: Reinforcement Learning →](../Chapter%205%20-%20Reinforcement%20Learning/chap5.md)
 
 ---
 
@@ -58,6 +58,8 @@ Like asking a **committee of experts** instead of a single person — the collec
 $$
 \hat{y} = \frac{1}{n} \sum_{i=1}^{n} \hat{y}_i
 $$
+
+![Ensemble Learning](./Infographics/4.1%20Ensemble%20Learning.png)
 
 ---
 
@@ -142,6 +144,8 @@ flowchart LR
 > - Your single model overfits → use **Bagging**
 > - Your single model underfits → use **Boosting**
 
+![Bagging vs Boosting](./Infographics/4.2%20Bagging%20vs%20Boosting.png)
+
 ---
 
 # 🤖 6. Active Learning
@@ -169,6 +173,8 @@ flowchart TD
 
 A spam filter that asks: *"Is this borderline email spam or not?"*
 
+![Active Learning](./Infographics/4.3%20Active%20Learning.png)
+
 ---
 
 # 🧠 7. Instance-Based Learning
@@ -182,6 +188,8 @@ Instead of building an explicit model, the algorithm **stores all training data*
 > "No general rule — just remember and compare at prediction time."
 
 This is called **lazy learning** — the model defers computation until a prediction is needed.
+
+![Instance-Based Learning](./Infographics/4.4%20Instance-Based%20Learning.png)
 
 ---
 
@@ -309,4 +317,4 @@ The key insight: no single model is always the best — knowing **when and how t
 
 ---
 
-📍 **Navigation:** [🏠 Home](../../readme.md) | [← Chapter 3](../../Chapter%203%20-%20Neural%20Networks/chap3.md) | **Chapter 4** | [Chapter 5: Reinforcement Learning →](../../Chapter%205%20-%20Reinforcement%20Learning/Infographics/chap5.md)
+📍 **Navigation:** [🏠 Home](../readme.md) | [← Chapter 3](../Chapter%203%20-%20Neural%20Networks/chap3.md) | **Chapter 4** | [Chapter 5: Reinforcement Learning →](../Chapter%205%20-%20Reinforcement%20Learning/chap5.md)

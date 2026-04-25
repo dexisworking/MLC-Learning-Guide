@@ -48,7 +48,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overf
   transition:box-shadow .3s;
 }
 .navbar.scrolled{box-shadow:0 4px 30px #00000060}
-.nav-logo{font-size:1.1rem;font-weight:800;background:linear-gradient(135deg,#6366f1,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-logo{font-size:1.1rem;font-weight:800;background:linear-gradient(135deg,#6366f1,#a78bfa);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .nav-links{margin-left:auto;display:flex;gap:.5rem}
 .nav-link{
   padding:.4rem .9rem;border-radius:.5rem;border:1px solid transparent;
@@ -88,7 +88,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overf
   font-size:clamp(2.5rem,7vw,4.2rem);font-weight:900;line-height:1.05;
   margin-bottom:1.25rem;letter-spacing:-.03em;
   background:linear-gradient(135deg,#fff 0%,#e0e0ff 40%,#a5b4fc 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
 }
 .hero-sub{
   color:var(--muted);font-size:1.1rem;max-width:540px;margin:0 auto 2.5rem;line-height:1.7;font-weight:400;
@@ -353,11 +353,11 @@ footer a:hover{color:#c4b5fd}
       <div class="tool-desc">Beautifully rendered Markdown with math formulas, Mermaid diagrams, and syntax highlighting.</div>
       <span class="tool-tag" style="color:#8b5cf6;border-color:#8b5cf640">Rich Content</span>
     </a>
-    <a class="tool-card fade-up stagger-4" href="https://mlcguidedex.netlify.app/" target="_blank">
-      <span class="tool-icon">🌐</span>
-      <div class="tool-title">Live Website</div>
-      <div class="tool-desc">All tools deployed and accessible from anywhere — no installation needed.</div>
-      <span class="tool-tag" style="color:#f59e0b;border-color:#f59e0b40">Deployed</span>
+    <a class="tool-card fade-up stagger-5" href="/infographics.html">
+      <span class="tool-icon">🖼️</span>
+      <div class="tool-title">Infographic Gallery</div>
+      <div class="tool-desc">Chapter-wise grouped view of all 30+ infographics for visual learning and quick recall.</div>
+      <span class="tool-tag" style="color:#10b981;border-color:#10b98140">Visual Hub</span>
     </a>
   </div>
 </div>

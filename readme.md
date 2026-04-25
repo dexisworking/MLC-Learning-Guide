@@ -184,7 +184,7 @@ Understand how AI models mimic the brain.
 
 Improve model performance and accuracy.
 
-📖 [Open Chapter 4 →](./Chapter%204%20-%20Advanced%20Learning/Infographics/chap4.md)
+📖 [Open Chapter 4 →](./Chapter%204%20-%20Advanced%20Learning/chap4.md)
 
 ---
 
@@ -205,7 +205,7 @@ Improve model performance and accuracy.
 
 Understand how agents learn decision-making through interaction.
 
-📖 [Open Chapter 5 →](./Chapter%205%20-%20Reinforcement%20Learning/Infographics/chap5.md)
+📖 [Open Chapter 5 →](./Chapter%205%20-%20Reinforcement%20Learning/chap5.md)
 
 ---
 

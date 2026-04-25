@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infographic Gallery — MLC Learning Guide</title>
+<meta name="description" content="Visual learning hub for Machine Learning — grouped by chapter. High-resolution infographics and flowcharts.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07070c;--surface:#111118;--surface2:#1a1a24;--border:#252535;
+  --text:#e8e8f8;--muted:#6868a0;--accent:#6366f1;--accent2:#818cf8;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden}
+
+/* Navbar */
+.navbar{
+  position:fixed;top:0;left:0;right:0;height:60px;
+  background:#111118cc;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);z-index:100;
+  display:flex;align-items:center;padding:0 2rem;
+}
+.nav-logo{font-size:1.1rem;font-weight:800;background:linear-gradient(135deg,#6366f1,#a78bfa);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+.nav-links{margin-left:auto;display:flex;gap:.5rem}
+.nav-link{
+  padding:.4rem .9rem;border-radius:.5rem;border:1px solid transparent;
+  color:var(--muted);font-size:.8rem;text-decoration:none;font-weight:500;
+  transition:all .2s;
+}
+.nav-link:hover{color:#fff;border-color:var(--border)}
+.nav-link.highlight{border-color:var(--accent);color:var(--accent2)}
+
+/* Header */
+.header{padding:8rem 2rem 4rem;text-align:center;max-width:900px;margin:0 auto}
+.header h1{font-size:3rem;font-weight:900;margin-bottom:1rem;background:linear-gradient(to right,#fff,#a5b4fc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.header p{color:var(--muted);font-size:1.1rem;line-height:1.6}
+
+/* Filters */
+.filters{
+  display:flex;justify-content:center;gap:.5rem;margin-bottom:3rem;flex-wrap:wrap;
+  position:sticky;top:80px;z-index:90;padding:1rem;background:var(--bg);
+}
+.filter-btn{
+  padding:.6rem 1.2rem;border-radius:.75rem;background:var(--surface);border:1px solid var(--border);
+  color:var(--muted);font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;
+  font-family:inherit;
+}
+.filter-btn:hover{border-color:var(--muted);color:#fff}
+.filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 4px 15px #6366f140}
+
+/* Grid */
+.gallery-section{max-width:1400px;margin:0 auto;padding:0 2rem 5rem}
+.chapter-group{margin-bottom:5rem}
+.chapter-title{font-size:1.5rem;font-weight:800;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
+.chapter-title span{font-size:.75rem;padding:.2rem .6rem;background:var(--surface2);border:1px solid var(--border);border-radius:4px;color:var(--accent2)}
+
+.infographics-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;
+}
+.info-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:1rem;overflow:hidden;
+  transition:all .3s cubic-bezier(.16,1,.3,1);cursor:pointer;position:relative;
+}
+.info-card:hover{transform:translateY(-8px);border-color:var(--accent);box-shadow:0 12px 30px #00000080}
+.info-img-wrapper{aspect-ratio:16/9;overflow:hidden;background:#000}
+.info-img-wrapper img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.info-card:hover .info-img-wrapper img{transform:scale(1.05)}
+.info-content{padding:1.25rem}
+.info-name{font-size:.95rem;font-weight:700;margin-bottom:.4rem;color:#fff}
+.info-type{font-size:.7rem;color:var(--accent2);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+
+/* Modal */
+.modal{
+  position:fixed;inset:0;background:#000000f0;z-index:1000;display:none;
+  align-items:center;justify-content:center;padding:2rem;
+}
+.modal.active{display:flex}
+.modal-close{position:absolute;top:2rem;right:2rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;opacity:.6}
+.modal-close:hover{opacity:1}
+.modal-content{max-width:90%;max-height:90%;position:relative}
+.modal-img{max-width:100%;max-height:85vh;border-radius:.5rem;box-shadow:0 0 50px #000}
+.modal-caption{text-align:center;margin-top:1.5rem;color:#fff;font-size:1.2rem;font-weight:600}
+
+/* Animations */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeInUp .6s both}
+
+footer{padding:4rem 2rem;text-align:center;border-top:1px solid var(--border);color:var(--muted);font-size:.9rem}
+footer b{color:var(--text)}
+footer a{color:inherit;text-decoration:none}
+footer a:hover{color:var(--accent2)}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="/" class="nav-logo">MLC Guide</a>
+  <div class="nav-links">
+    <a href="/" class="nav-link">Home</a>
+    <a href="/flashcards.html" class="nav-link">Flashcards</a>
+    <a href="/mindmap.html" class="nav-link">Mind Map</a>
+    <a href="/infographics.html" class="nav-link highlight">Gallery</a>
+  </div>
+</nav>
+
+<div class="header fade-in">
+  <h1>Visual Learning Hub</h1>
+  <p>Master complex ML concepts through high-fidelity infographics, flowcharts, and comparison maps. Click any image to view in full resolution.</p>
+</div>
+
+<div class="filters fade-in" style="animation-delay:.1s">
+  <button class="filter-btn active" data-target="all">All Chapters</button>
+  <button class="filter-btn" data-target="ch1">Chapter 1</button>
+  <button class="filter-btn" data-target="ch2">Chapter 2</button>
+  <button class="filter-btn" data-target="ch3">Chapter 3</button>
+  <button class="filter-btn" data-target="ch4">Chapter 4</button>
+  <button class="filter-btn" data-target="ch5">Chapter 5</button>
+  <button class="filter-btn" data-target="bonus">Bonus</button>
+</div>
+
+<div class="gallery-section">
+  <!-- Chapter 1 -->
+  <div class="chapter-group fade-in" data-chapter="ch1" style="animation-delay:.2s">
+    <div class="chapter-title">Chapter 1: Supervised Learning <span>7 Infographics</span></div>
+    <div class="infographics-grid">
+      <div class="info-card" onclick="openModal('./Chapter 1 - Supervised Learning/Infographics/1.1 Supervised Learning Overview.png', 'Supervised Learning Overview')">
+        <div class="info-img-wrapper"><img src="./Chapter 1 - Supervised Learning/Infographics/1.1 Supervised Learning Overview.png" alt="Overview"></div>
+        <div class="info-content">
+          <div class="info-type">Core Concept</div>
+          <div class="info-name">1.1 Supervised Learning Overview</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Chapter 1 - Supervised Learning/Infographics/1.2 Classification.png', 'Classification Essentials')">
+        <div class="info-img-wrapper"><img src="./Chapter 1 - Supervised Learning/Infographics/1.2 Classification.png" alt="Classification"></div>
+        <div class="info-content">
+          <div class="info-type">Task Type</div>
+          <div class="info-name">1.2 Classification Essentials</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Chapter 1 - Supervised Learning/Infographics/1.3 Regression.png', 'Regression Fundamentals')">
+        <div class="info-img-wrapper"><img src="./Chapter 1 - Supervised Learning/Infographics/1.3 Regression.png" alt="Regression"></div>
+        <div class="info-content">
+          <div class="info-type">Task Type</div>
+          <div class="info-name">1.3 Regression Fundamentals</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Chapter 1 - Supervised Learning/Infographics/1.4 Combined Flow.png', 'Training & Evaluation Flow')">
+        <div class="info-img-wrapper"><img src="./Chapter 1 - Supervised Learning/Infographics/1.4 Combined Flow.png" alt="Combined Flow"></div>
+        <div class="info-content">
+          <div class="info-type">Process Map</div>
+          <div class="info-name">1.4 Combined Learning Flow</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Bonus Infographics/Bonus 5 End-to-End ML Pipeline.png', 'End-to-End ML Pipeline')">
+        <div class="info-img-wrapper"><img src="./Bonus Infographics/Bonus 5 End-to-End ML Pipeline.png" alt="Pipeline"></div>
+        <div class="info-content">
+          <div class="info-type">Bonus Deep Dive</div>
+          <div class="info-name">End-to-End ML Pipeline</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Bonus Infographics/Bonus 8 Classification Decision Boundary.png', 'Classification Decision Boundary')">
+        <div class="info-img-wrapper"><img src="./Bonus Infographics/Bonus 8 Classification Decision Boundary.png" alt="Boundary"></div>
+        <div class="info-content">
+          <div class="info-type">Bonus Deep Dive</div>
+          <div class="info-name">Classification Decision Boundary</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Bonus Infographics/Bonus 9 Gradient Descent Journey.png', 'Gradient Descent Journey')">
+        <div class="info-img-wrapper"><img src="./Bonus Infographics/Bonus 9 Gradient Descent Journey.png" alt="GD"></div>
+        <div class="info-content">
+          <div class="info-type">Bonus Deep Dive</div>
+          <div class="info-name">Gradient Descent Journey</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 2 -->
+  <div class="chapter-group fade-in" data-chapter="ch2" style="animation-delay:.3s">
+    <div class="chapter-title">Chapter 2: Unsupervised Learning <span>8 Infographics</span></div>
+    <div class="infographics-grid">
+      <div class="info-card" onclick="openModal('./Chapter 2 - Unsupervised Learning/Infographics/2.1 Unsupervised Learning Overview.png', 'Unsupervised Learning Overview')">
+        <div class="info-img-wrapper"><img src="./Chapter 2 - Unsupervised Learning/Infographics/2.1 Unsupervised Learning Overview.png" alt="Overview"></div>
+        <div class="info-content">
+          <div class="info-type">Core Concept</div>
+          <div class="info-name">2.1 Unsupervised Learning Overview</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Chapter 2 - Unsupervised Learning/Infographics/2.2 Clustering (K-Means + Elbow).png', 'K-Means & Elbow Method')">
+        <div class="info-img-wrapper"><img src="./Chapter 2 - Unsupervised Learning/Infographics/2.2 Clustering (K-Means + Elbow).png" alt="Clustering"></div>
+        <div class="info-content">
+          <div class="info-type">Algorithm</div>
+          <div class="info-name">2.2 K-Means & Elbow Method</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Chapter 2 - Unsupervised Learning/Infographics/2.3 K-Means vs K-Medoids.png', 'K-Means vs K-Medoids')">
+        <div class="info-img-wrapper"><img src="./Chapter 2 - Unsupervised Learning/Infographics/2.3 K-Means vs K-Medoids.png" alt="Comparison"></div>
+        <div class="info-content">
+          <div class="info-type">Comparison</div>
+          <div class="info-name">2.3 K-Means vs K-Medoids</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Chapter 2 - Unsupervised Learning/Infographics/2.4 Association Rules.png', 'Association Rule Learning')">
+        <div class="info-img-wrapper"><img src="./Chapter 2 - Unsupervised Learning/Infographics/2.4 Association Rules.png" alt="Association"></div>
+        <div class="info-content">
+          <div class="info-type">Algorithm</div>
+          <div class="info-name">2.4 Association Rule Learning</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Chapter 2 - Unsupervised Learning/Infographics/2.5 ECLAT Algorithm.png', 'ECLAT Algorithm')">
+        <div class="info-img-wrapper"><img src="./Chapter 2 - Unsupervised Learning/Infographics/2.5 ECLAT Algorithm.png" alt="ECLAT"></div>
+        <div class="info-content">
+          <div class="info-type">Algorithm</div>
+          <div class="info-name">2.5 ECLAT Algorithm</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Bonus Infographics/Bonus 1 Elbow + WCSS.png', 'WCSS & The Elbow')">
+        <div class="info-img-wrapper"><img src="./Bonus Infographics/Bonus 1 Elbow + WCSS.png" alt="WCSS"></div>
+        <div class="info-content">
+          <div class="info-type">Bonus Deep Dive</div>
+          <div class="info-name">WCSS & The Elbow</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Bonus Infographics/Bonus 2 Apriori Principle.png', 'The Apriori Principle')">
+        <div class="info-img-wrapper"><img src="./Bonus Infographics/Bonus 2 Apriori Principle.png" alt="Apriori"></div>
+        <div class="info-content">
+          <div class="info-type">Bonus Deep Dive</div>
+          <div class="info-name">The Apriori Principle</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Bonus Infographics/Bonus 10 Association Rules Network Map.png', 'Association Rules Network Map')">
+        <div class="info-img-wrapper"><img src="./Bonus Infographics/Bonus 10 Association Rules Network Map.png" alt="Network Map"></div>
+        <div class="info-content">
+          <div class="info-type">Bonus Deep Dive</div>
+          <div class="info-name">Association Rules Network Map</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 3 -->
+  <div class="chapter-group fade-in" data-chapter="ch3" style="animation-delay:.4s">
+    <div class="chapter-title">Chapter 3: Neural Networks <span>7 Infographics</span></div>
+    <div class="infographics-grid">
+      <div class="info-card" onclick="openModal('./Chapter 3 - Neural Networks/Infographics/3.1 Biological vs Artificial Neuron.png', 'Biological vs Artificial Neuron')">
+        <div class="info-img-wrapper"><img src="./Chapter 3 - Neural Networks/Infographics/3.1 Biological vs Artificial Neuron.png" alt="Neurons"></div>
+        <div class="info-content">
+          <div class="info-type">Architecture</div>
+          <div class="info-name">3.1 Biological vs Artificial Neuron</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Chapter 3 - Neural Networks/Infographics/3.2 Artificial Neuron Working.png', 'Artificial Neuron Math')">
+        <div class="info-img-wrapper"><img src="./Chapter 3 - Neural Networks/Infographics/3.2 Artificial Neuron Working.png" alt="Working"></div>
+        <div class="info-content">
+          <div class="info-type">Mechanism</div>
+          <div class="info-name">3.2 Artificial Neuron Working</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Chapter 3 - Neural Networks/Infographics/3.3 Activation Functions.png', 'Activation Functions')">
+        <div class="info-img-wrapper"><img src="./Chapter 3 - Neural Networks/Infographics/3.3 Activation Functions.png" alt="Activation"></div>
+        <div class="info-content">
+          <div class="info-type">Mechanism</div>
+          <div class="info-name">3.3 Activation Functions</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Chapter 3 - Neural Networks/Infographics/3.4 Deep Learning Architecture.png', 'Deep Learning Layers')">
+        <div class="info-img-wrapper"><img src="./Chapter 3 - Neural Networks/Infographics/3.4 Deep Learning Architecture.png" alt="DL Architecture"></div>
+        <div class="info-content">
+          <div class="info-type">Architecture</div>
+          <div class="info-name">3.4 Deep Learning Architecture</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Chapter 3 - Neural Networks/Infographics/3.5 Autoencoder.png', 'Autoencoder Overview')">
+        <div class="info-img-wrapper"><img src="./Chapter 3 - Neural Networks/Infographics/3.5 Autoencoder.png" alt="Autoencoder"></div>
+        <div class="info-content">
+          <div class="info-type">Architecture</div>
+          <div class="info-name">3.5 Autoencoder Overview</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Bonus Infographics/Bonus 3 Autoencoder + Compression.png', 'Autoencoder & Data Compression')">
+        <div class="info-img-wrapper"><img src="./Bonus Infographics/Bonus 3 Autoencoder + Compression.png" alt="Compression"></div>
+        <div class="info-content">
+          <div class="info-type">Bonus Deep Dive</div>
+          <div class="info-name">Autoencoder & Data Compression</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Bonus Infographics/Bonus 7 Neural Network Inside View.png', 'Neural Network Inside View')">
+        <div class="info-img-wrapper"><img src="./Bonus Infographics/Bonus 7 Neural Network Inside View.png" alt="Inside View"></div>
+        <div class="info-content">
+          <div class="info-type">Bonus Deep Dive</div>
+          <div class="info-name">Neural Network Inside View</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 4 -->
+  <div class="chapter-group fade-in" data-chapter="ch4" style="animation-delay:.5s">
+    <div class="chapter-title">Chapter 4: Advanced Learning <span>5 Infographics</span></div>
+    <div class="infographics-grid">
+      <div class="info-card" onclick="openModal('./Chapter 4 - Advanced Learning/Infographics/4.1 Ensemble Learning.png', 'Ensemble Learning Strategies')">
+        <div class="info-img-wrapper"><img src="./Chapter 4 - Advanced Learning/Infographics/4.1 Ensemble Learning.png" alt="Ensemble"></div>
+        <div class="info-content">
+          <div class="info-type">Strategy</div>
+          <div class="info-name">4.1 Ensemble Learning</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Chapter 4 - Advanced Learning/Infographics/4.2 Bagging vs Boosting.png', 'Bagging vs Boosting')">
+        <div class="info-img-wrapper"><img src="./Chapter 4 - Advanced Learning/Infographics/4.2 Bagging vs Boosting.png" alt="Comparison"></div>
+        <div class="info-content">
+          <div class="info-type">Comparison</div>
+          <div class="info-name">4.2 Bagging vs Boosting</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Chapter 4 - Advanced Learning/Infographics/4.3 Active Learning.png', 'Active Learning Loop')">
+        <div class="info-img-wrapper"><img src="./Chapter 4 - Advanced Learning/Infographics/4.3 Active Learning.png" alt="Active"></div>
+        <div class="info-content">
+          <div class="info-type">Process Map</div>
+          <div class="info-name">4.3 Active Learning Loop</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Chapter 4 - Advanced Learning/Infographics/4.4 Instance-Based Learning.png', 'Instance-Based Learning (KNN)')">
+        <div class="info-img-wrapper"><img src="./Chapter 4 - Advanced Learning/Infographics/4.4 Instance-Based Learning.png" alt="Instance"></div>
+        <div class="info-content">
+          <div class="info-type">Algorithm</div>
+          <div class="info-name">4.4 Instance-Based Learning</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Bonus Infographics/Bonus 6 Bias vs Variance Tradeoff.png', 'Bias vs Variance Tradeoff')">
+        <div class="info-img-wrapper"><img src="./Bonus Infographics/Bonus 6 Bias vs Variance Tradeoff.png" alt="Tradeoff"></div>
+        <div class="info-content">
+          <div class="info-type">Bonus Deep Dive</div>
+          <div class="info-name">Bias vs Variance Tradeoff</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chapter 5 -->
+  <div class="chapter-group fade-in" data-chapter="ch5" style="animation-delay:.6s">
+    <div class="chapter-title">Chapter 5: Reinforcement Learning <span>4 Infographics</span></div>
+    <div class="infographics-grid">
+      <div class="info-card" onclick="openModal('./Chapter 5 - Reinforcement Learning/Infographics/5.1 RL Overview.png', 'Reinforcement Learning Overview')">
+        <div class="info-img-wrapper"><img src="./Chapter 5 - Reinforcement Learning/Infographics/5.1 RL Overview.png" alt="Overview"></div>
+        <div class="info-content">
+          <div class="info-type">Core Concept</div>
+          <div class="info-name">5.1 RL Overview</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Chapter 5 - Reinforcement Learning/Infographics/5.2 Exploration vs Exploitation.png', 'Exploration vs Exploitation')">
+        <div class="info-img-wrapper"><img src="./Chapter 5 - Reinforcement Learning/Infographics/5.2 Exploration vs Exploitation.png" alt="Tradeoff"></div>
+        <div class="info-content">
+          <div class="info-type">Tradeoff</div>
+          <div class="info-name">5.2 Exploration vs Exploitation</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Chapter 5 - Reinforcement Learning/Infographics/5.3 RL Loop.png', 'The RL Interaction Loop')">
+        <div class="info-img-wrapper"><img src="./Chapter 5 - Reinforcement Learning/Infographics/5.3 RL Loop.png" alt="Loop"></div>
+        <div class="info-content">
+          <div class="info-type">Process Map</div>
+          <div class="info-name">5.3 RL Interaction Loop</div>
+        </div>
+      </div>
+      <div class="info-card" onclick="openModal('./Chapter 5 - Reinforcement Learning/Infographics/5.4 Markov Property.png', 'Markov Property & MDP')">
+        <div class="info-img-wrapper"><img src="./Chapter 5 - Reinforcement Learning/Infographics/5.4 Markov Property.png" alt="Markov"></div>
+        <div class="info-content">
+          <div class="info-type">Core Concept</div>
+          <div class="info-name">5.4 Markov Property & MDP</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bonus Section -->
+  <div class="chapter-group fade-in" data-chapter="bonus" style="animation-delay:.7s">
+    <div class="chapter-title">Bonus: Visual Summaries <span>1 Infographic</span></div>
+    <div class="infographics-grid">
+      <div class="info-card" onclick="openModal('./Bonus Infographics/Bonus 4 ML Universe Map.png', 'The Machine Learning Universe Map')">
+        <div class="info-img-wrapper"><img src="./Bonus Infographics/Bonus 4 ML Universe Map.png" alt="Universe Map"></div>
+        <div class="info-content">
+          <div class="info-type">Global Map</div>
+          <div class="info-name">ML Universe Map</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <button class="modal-close" onclick="closeModal()">&times;</button>
+  <div class="modal-content">
+    <img src="" alt="Full Resolution" class="modal-img" id="modalImg">
+    <div class="modal-caption" id="modalCaption"></div>
+  </div>
+</div>
+
+<footer>
+  Built with ❤️ by <b>Dex</b> · <a href="https://mlcguidedex.netlify.app/">MLC Learning Guide</a>
+</footer>
+
+<script>
+// Filter Logic
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelector('.filter-btn.active').classList.remove('active');
+    btn.classList.add('active');
+    const target = btn.getAttribute('data-target');
+    
+    document.querySelectorAll('.chapter-group').forEach(group => {
+      if(target === 'all' || group.getAttribute('data-chapter') === target) {
+        group.style.display = 'block';
+      } else {
+        group.style.display = 'none';
+      }
+    });
+  });
+});
+
+// Modal Logic
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modalImg');
+const modalCaption = document.getElementById('modalCaption');
+
+function openModal(src, caption) {
+  modalImg.src = src;
+  modalCaption.textContent = caption;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+modal.addEventListener('click', (e) => {
+  if(e.target === modal) closeModal();
+});
+
+// Intersection Observer for scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
